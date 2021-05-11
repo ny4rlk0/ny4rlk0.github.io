@@ -93,13 +93,14 @@
 <form action="http://www.google.com/search" method="get">
 
 <input style="height:60px;width:450px;font-size:16pt;" placeholder="Ufufufufu, let me search for you ~master!" class="center-block" type="text" name="q">
-
 </form>
 <h1>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</h1>
+<h1 id="IP"></h1>
 <h1>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</h1>
-<h1>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</h1>
-<script type="application/javascript" src="https://api.ipify.org">
-</script>
+$.getJSON('https://json.geoiplookup.io/?callback=?', function(data) {
+  console.log(JSON.stringify(data, null, 2));
+});
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <address></address>
  <script language="JavaScript" src="http://feed2js.org//feed2js.php?src=https%3A%2F%2Fwww.animenewsandfacts.com%2Ffeeds%2Fposts%2Fdefault&chan=y&targ=y&utf=y&pc=y&html=a"  charset="UTF-8" type="text/javascript"></script>
 <address></address>
