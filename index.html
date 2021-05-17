@@ -62,22 +62,15 @@
 </head>
 
 <body>
-  <script language="JavaScript" charset="UTF-8" type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
-   $( document ).ready(function(){
-    var userLang = navigator.language || navigator.userLanguage;
-    if (userLang == "en-US") {
-        return false;
-    }
-    else if(userLang == "tr-TR"){
-       window.location.href = "tr.html"
-    }
-    else if(userLang == "tr-TR"){
-       window.location.href = "tr.html"
-    }
-    else {
-        return false;
-    }
-    });</script>
+<script type= "text/javascript">
+var language = window.navigator.language;
+if(language == "tr-TR" || language == "tr"){
+window.location.href = "/tr.html";
+}       
+else{
+ return false;
+}
+</script>
 <!-- Site navigation menu -->
 <ul class="navbar">
   <li><a href="index.html">Home</a>
