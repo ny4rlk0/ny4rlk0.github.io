@@ -63,18 +63,16 @@
 
 <body>
   <script language="JavaScript" charset="UTF-8" type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
-$( document ).ready(function(){
+   $( document ).ready(function(){
     var userLang = navigator.language || navigator.userLanguage;
     if (userLang == "en") {
         return false;
     }
     else if(userLang == "tr"){
-       window.location.href = "www.google.com"
-       return false;
+       window.location.href = "tr.html"
     }
     else if(userLang == "TR"){
-       window.location.href = "www.google.com"
-       return false;
+       window.location.href = "tr.html"
     }
     else {
         return false;
