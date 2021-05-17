@@ -63,11 +63,22 @@
 
 <body>
   <script language="JavaScript" charset="UTF-8" type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
-    $( document ).ready(function(){
-        var userLang = navigator.language || navigator.userLanguage;
-        if (userLang == "tr") {window.location.href = "nyarlko.com/tr.html"}
-        else if (userLang == "TR") {window.location.href = "nyarlko.com/tr.html"}
-        else {return false;}
+$( document ).ready(function(){
+    var userLang = navigator.language || navigator.userLanguage;
+    if (userLang == "en") {
+        return false;
+    }
+    else if(userLang == "tr"){
+       window.location.href = "www.google.com"
+       return false;
+    }
+    else if(userLang == "TR"){
+       window.location.href = "www.google.com"
+       return false;
+    }
+    else {
+        return false;
+    }
     });</script>
 <!-- Site navigation menu -->
 <ul class="navbar">
