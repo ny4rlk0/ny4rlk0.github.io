@@ -10,7 +10,8 @@
 <body>
 <!-- Dil türkçe ise türkçe sayfaya yönlendir. (Hata var düzelt!)--> 
 <script type= "text/javascript">
-var language = window.navigator.language;
+<!--var language = window.navigator.language;-->
+var language = window.navigator.userLanguage || window.navigator.language;
 if (language == "tr-TR" || language == "tr") {window.location.href = "https://nyarlko.com/tr.html";}       
 else {window.location.href = "https://nyarlko.com/mainnanodesu.html";}
 </script>
