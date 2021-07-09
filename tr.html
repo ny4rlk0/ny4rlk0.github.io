@@ -13,6 +13,7 @@
           Times, serif;
     color: gray;
     background-color: rgba(255,255,255,0.7)}
+     .buton{background-image: url(https://raw.githubusercontent.com/ny4rlk0/ny4rlk0.github.io/main/pink_button.png);  width:auto; height:auto; border: 0;}
   .center-block {
   display: block;
   margin-right: auto;
@@ -53,11 +54,13 @@
     padding-top: 1em;
     border-top: thin dotted }
   html { 
-    background: url(https://1.bp.blogspot.com/-G7yEyfNBGbs/YJIBeMdFXXI/AAAAAAAAAI8/6Vh_Vm7oTXUbBv3hQZ3tUJ5qr3lG_T00wCLcBGAsYHQ/s1920/308383-aliya06_1920x1200.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;}
+    background: url(https://1.bp.blogspot.com/-G7yEyfNBGbs/YJIBeMdFXXI/AAAAAAAAAI8/6Vh_Vm7oTXUbBv3hQZ3tUJ5qr3lG_T00wCLcBGAsYHQ/s1920/308383-aliya06_1920x1200.jpg) no-repeat center center fixed;; 
+    background-repeat:no-repeat;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+    background-position:center;}
   </style>
 </head>
 
@@ -110,16 +113,34 @@
 <img src="https://raw.githubusercontent.com/ny4rlk0/ny4rlk0.github.io/main/en.png" alt="Switch to English view." style="width:64px;height:48px;" class="center-block">
 </a>
 <!-- Kullanıcının dil tercihi.-->
+  <script>
+ var divname;
+ function contentHide(divname) {
+  var x = document.getElementById(divname);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+ }
+</script>
+ 
+ <button onclick="contentHide('News')" class="buton center-block">Anime News!</button>
+
+ <div id="News">
  <address></address>
 <script language="JavaScript" src="http://feed2js.org//feed2js.php?src=https%3A%2F%2Fanimeler.net%2Frss.xml&desc=1&utf=y&html=p"  charset="UTF-8" type="text/javascript"></script>
-
 <!-- 5 Mayıs 2021 nyarlko tarafından ❤ ile yazılmıştır! -->
 <address></address>
+ </div>
   <h6>『nyarlko』 ve 『z3r0tw0』 tarafından 『❤』 ile yazılmıştır.</h6>
   <h6>BTC: 3NhGAPpkLas1pDdPp7tSeP5ba1gHapq7kb</h6>
    <address></address>
  <div><h2>~Efendim IP adresiniz:</h2></div>
  <div><iframe src="https://api64.ipify.org/" width="140" height="40" frameborder="0"></iframe></div>
 <h1>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</h1>
+  <script>
+ window.contentHide("News")
+  </script>
 </body>
 </html>
