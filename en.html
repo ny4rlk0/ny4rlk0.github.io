@@ -110,8 +110,9 @@
  </a>
  <!-- Kullanıcının dil tercihi.-->
  <script>
- function contentHide() {
-  var x = document.getElementById("News");
+ var divname;
+ function contentHide(divname) {
+  var x = document.getElementById(divname);
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -119,7 +120,8 @@
   }
  }
 </script>
- <button onclick="contentHide()">Click to show Anime News!</button>
+ <button onclick="contentHide(News)">Click to show Anime News!</button>
+ <button onclick="contentHide(Extra)">Click to show Anime News!</button>
 <address></address>
 
 <div id="News">
@@ -127,9 +129,9 @@
 </div> 
  <address></address>
   <script>
- window.contentHide()
+ window.contentHide("News")
   </script>
- 
+ <div id="Extra">
 <h2>Social Media ~desu!</h2>
   
 <p><a href="https://www.instagram.com/accounts/login/?hl=en">Instagram ~desu!<a/>
@@ -254,6 +256,10 @@
 <p><a href="https://us.libreoffice.org/download/libreoffice-stable/">Libre Office ~desu!<a/>
  
 <p><a href="https://www.openoffice.org/tr/download/index.html">Open Office ~desu!<a/>
+ </div>
+   <script>
+ window.contentHide("Extra")
+  </script>
 <!-- 5 Mayıs 2021 nyarlko tarafından ❤ ile yazılmıştır! -->
 <address>
   <h6>Best browser homepage for Weebs!</h6>
