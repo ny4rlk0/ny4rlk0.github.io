@@ -109,10 +109,19 @@
  <img src="https://raw.githubusercontent.com/ny4rlk0/ny4rlk0.github.io/main/en.png" alt="Switch to English view." style="width:64px;height:48px;" class="center-block">
  </a>
  <!-- Kullanıcının dil tercihi.-->
- 
- <!--<address></address>
+ function contentHide() {
+  var x = document.getElementById("News");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+ <button onclick="contentHide()">Click to show Anime News!</button>
+<address></address>
+<div id="News">
  <script language="JavaScript" src="http://feed2js.org//feed2js.php?src=https%3A%2F%2Fwww.animenewsandfacts.com%2Ffeeds%2Fposts%2Fdefault&chan=y&targ=y&utf=y&pc=y&html=a"  charset="UTF-8" type="text/javascript"></script>
- -->
+</div> 
  <address></address>
  
  
