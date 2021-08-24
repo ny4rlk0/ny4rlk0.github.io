@@ -120,7 +120,7 @@ async function konumuBul(){
             haritada_isaretli_yerler.push(yeni_isaretli_hedef);
           });
           //bilgipenceresi.open({anchor:Marker,harita,shouldFocus:true});//konum penceresini aç bir şekilde
-          harita.panTo(anlik_konum);//Haritada konumu ortala
+          harita.panTo(anlik_konum_obje);//Haritada konumu ortala
 }
 
 async function konumuAcKapa(){
