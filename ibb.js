@@ -48,8 +48,11 @@ async function anlik_konumu_bul(){
   }
   else{anlik_konum=ibb_bina;}
 }
-anlik_konumu_bul();
-konumuBul();
+async function konumuYenile(){
+await anlik_konumu_bul();
+await konumuBul();
+}
+
 $.ajax({
   'async': true,
   'global': true,
@@ -84,9 +87,10 @@ jQuery(document).ready(function(){
     }
   });
   if (TestModu=true){alert(bilgilendirme_mesaji);}
+  konumuYenile();
 });
 async function konumuBul(){
-          anlik_konumu_bul();
+          await konumuYenile();
           var yeni_isaretli_hedef=new google.maps.Marker({position:anlik_konum_obje,map:harita,icon:'kirmizi_ok_x32.png',title:'Konum'});
           if(bilgipenceresi){
             bilgipenceresi.setMap(nyaa_desu);
