@@ -1,9 +1,8 @@
 var ny4='rlk0';
-const nyaa_desu=null;
+const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
 var cember_alani,geocode,bilgipenceresi,anlik_konum,a_lat,a_lng,akonum=[];
 var haritada_isaretli_yerler=[],tum_konumlar=[];
-const metre_degerleri=[],dds=[];
 var konum_ayarlari={enableHighAccuracy:true,timeout:5000,maximumAge:0};
 var TestModu=true;//Örnek konumlarla ve örnek veritabanıyla çalışır Gerçek veri tabanına geçeceğiniz zaman false yapın
 //False  oldugu zaman test modunu kapatır gerçek konumunuzu çeker ve veritabanındaki konumlarla karşılatırır.
@@ -26,7 +25,7 @@ Sistem varsayılan ayarları yüzünden ve yeterince konum olmadığı için tes
 Test modunu kapatarak gerçek konumunuz ile hesaplayabilirsiniz.
 Lakin veritabani.json içerisinde, belirttiğiniz dakikada size yakın bir konum yoksa.
 Konum bulunamadı uyarısı alacaksınız.`;
-function anlik_konumu_bul(){
+async function anlik_konumu_bul(){
   TestModu = $('#test_modu').val();
   console.log('TestModu: '+TestModu);
   if(TestModu==false){
@@ -92,6 +91,7 @@ jQuery(document).ready(function(){
   if (TestModu=true){alert(bilgilendirme_mesaji);}
 });
 async function konumuBul(){
+          await anlik_konumu_bul();
           var yeni_isaretli_hedef=new google.maps.Marker({position:anlik_konum,map:harita,icon:'kirmizi_ok_x32.png',title:'Konum'});
           if(bilgipenceresi){
             bilgipenceresi.setMap(nyaa_desu);
