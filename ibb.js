@@ -32,6 +32,8 @@ async function anlik_konumu_bul(){
   else{TestModu=true;}
   console.log('TestModu: '+TestModu);
   if(TestModu==true){
+  console.log('TestModu: '+TestModu);
+  console.log('anlik_konumu_bul()');
   anlik_konum=nyaa_desu;
   function basarili(kon){
     var k=kon.coords;
