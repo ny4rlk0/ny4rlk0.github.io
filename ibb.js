@@ -28,6 +28,7 @@ Lakin veritabani.json içerisinde, belirttiğiniz dakikada size yakın bir konum
 Konum bulunamadı uyarısı alacaksınız.`;
 function anlik_konumu_bul(){
   TestModu = $('#test_modu').val();
+  console.log('TestModu: '+TestModu);
   if(TestModu==false){
   anlik_konum=nyaa_desu;
   function basarili(kon){
