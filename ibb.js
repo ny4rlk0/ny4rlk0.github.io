@@ -94,7 +94,7 @@ jQuery(document).ready(function(){
 });
 async function konumuBul(){
           anlik_konumu_bul();
-          var yeni_isaretli_hedef=new google.maps.Marker({position:anlik_konum,map:harita,icon:'kirmizi_ok_x32.png',title:'Konum'});
+          var yeni_isaretli_hedef=new google.maps.Marker({position:anlik_konum_obje,map:harita,icon:'kirmizi_ok_x32.png',title:'Konum'});
           if(bilgipenceresi){
             bilgipenceresi.setMap(nyaa_desu);
             bilgipenceresi=nyaa_desu;
@@ -104,17 +104,17 @@ async function konumuBul(){
             bilgipenceresi = new google.maps.InfoWindow({
               content: '<div style="color:red">'+'Konumum'+'</div>'+'Mevcut Konumum.',
               size: new google.maps.Size(150,50),
-              pixelOffset: new google.maps.Size(0,-30),position:anlik_konum,map:harita
+              pixelOffset: new google.maps.Size(0,-30),position:anlik_konum_obje,map:harita
             });
-            bilgipenceresi.setPosition(anlik_konum);
+            bilgipenceresi.setPosition(anlik_konum_obje);
             bilgipenceresi.setContent('<div style="color:red">'+'Konumum'+'</div>'+'Mevcut Konumum.');
             
-            harita.setCenter(anlik_konum);
+            harita.setCenter(anlik_konum_obje);
             haritada_isaretli_yerler.push(yeni_isaretli_hedef);
           });
           //bilgipenceresi.open({anchor:Marker,harita,shouldFocus:true});//konum penceresini aç bir şekilde
           console.log('KonumuBul()');
-          harita.panTo(anlik_konum);//Haritada konumu ortala
+          harita.panTo(anlik_konum_obje);//Haritada konumu ortala
 }
 
 async function konumuAcKapa(){
