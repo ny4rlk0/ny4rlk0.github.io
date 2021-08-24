@@ -46,6 +46,7 @@ async function anlik_konumu_bul(){
     a_lat=a.lat;
     a_lng=a.lng;
     akonum.push(parseFloat(a.lat),parseFloat(a.lng));
+    console.log(a.lat+' '+a.lng);
     anlik_konum= new google.maps.LatLng(a.lat,a.lng);
     console.log(anlik_konum);
   }
