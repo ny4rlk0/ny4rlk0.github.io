@@ -113,7 +113,7 @@ async function konumuBul(){
           });
           //bilgipenceresi.open({anchor:Marker,harita,shouldFocus:true});//konum penceresini aç bir şekilde
           console.log('KonumuBul()');
-          harita.panTo(anlik_konum_obje);//Haritada konumu ortala
+          harita.panTo(anlik_konum);//Haritada konumu ortala
 }
 
 async function konumuAcKapa(){
@@ -230,7 +230,7 @@ async function nekoback(cevap,durum){///Gidiş zamanı hesaplama fonksyonu için
   var a= await cevap;
   //if (durum=='ZERO_RESULTS'){console.clear();alert('Seçtiğiniz seyahat yöntemi ile gidilebilecek rota bulunamadı.');}
   if (durum=='OK'){console.log(a);return a;}//obje
-  else{console.clear();return;}
+  else{console.clear();console.log('Hata: Oneechan rotalar alınırken bir sorunla karşılaştım (?_?)');return;}
   
   }
 function nekowait(ms){
