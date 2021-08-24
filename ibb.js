@@ -70,7 +70,8 @@ $.ajax({
 //console.clear();//Yanlış hata bildirimlerini temizleyelim
 //Mapi örnekle
 jQuery(document).ready(function(){
-  var enboy = new google.maps.LatLng(41.013556652651154,28.95493828412249);//IBB Binası
+  //var enboy = new google.maps.LatLng(41.013556652651154,28.95493828412249);//IBB Binası
+  await anlik_konumu_bul();
   var ekAyarlar={
     zoom:18,
     center:anlik_konum,//enboy,//anlik_konum,
