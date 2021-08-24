@@ -87,8 +87,8 @@ jQuery(document).ready(function(){
     }
   });
   if (TestModu=true){alert(bilgilendirme_mesaji);}
-  konumuYenile();
 });
+konumuYenile();
 async function konumuBul(){
           await konumuYenile();
           var yeni_isaretli_hedef=new google.maps.Marker({position:anlik_konum_obje,map:harita,icon:'kirmizi_ok_x32.png',title:'Konum'});
