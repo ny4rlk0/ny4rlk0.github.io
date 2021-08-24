@@ -37,15 +37,16 @@ async function anlik_konumu_bul(){
   anlik_konum=nyaa_desu;
   function basarili(kon){
     var k=kon.coords;
-    const konum={
-      'lat':parseFloat(k.latitude),
-      'lng':parseFloat(k.longitude)
-    }
-    anlik_konum=konum;
+    //const konum={
+    //  'lat':parseFloat(k.latitude),
+    //  'lng':parseFloat(k.longitude)
+    //}
+    //anlik_konum=konum;
     const a=JSON.parse(JSON.stringify(anlik_konum));
     a_lat=a.lat;
     a_lng=a.lng;
     akonum.push(parseFloat(a.lat),parseFloat(a.lng));
+    anlik_konum== new google.maps.LatLng(a.lat,a.lng);
     console.log(anlik_konum);
   }
   function hata(hat)
