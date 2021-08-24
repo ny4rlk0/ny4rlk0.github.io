@@ -49,6 +49,7 @@ async function anlik_konumu_bul(){
   else{anlik_konum=ibb_bina;}
 }
 anlik_konumu_bul();
+konumuBul();
 $.ajax({
   'async': true,
   'global': true,
