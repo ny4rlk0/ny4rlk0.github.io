@@ -48,7 +48,11 @@ async function anlik_konumu_bul(){
     akonum.push(parseFloat(a.lat),parseFloat(a.lng));
     console.log(anlik_konum);
   }
-  navigator.geolocation.getCurrentPosition(basarili, konum_ayarlari);
+  function hata(hat)
+  {
+    console.log('Konumlandırma hatasi: '+hat);
+  }
+  navigator.geolocation.getCurrentPosition(basarili,hata, konum_ayarlari);
   }
   else{anlik_konum=ibb_bina;}
 }
