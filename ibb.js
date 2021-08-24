@@ -38,8 +38,8 @@ async function anlik_konumu_bul(){
   function basarili(kon){
     var k=kon.coords;
     const konum={
-      lat:parseFloat(k.latitude),
-      lng:parseFloat(k.longitude)
+      'lat':parseFloat(k.latitude),
+      'lng':parseFloat(k.longitude)
     }
     anlik_konum=konum;
     const a=JSON.parse(JSON.stringify(anlik_konum));
@@ -162,9 +162,9 @@ async function konumuAcKapa(){
       if(durum==google.maps.GeocoderStatus.OK){
         if(durum!=google.maps.GeocoderStatus.ZERO_RESULTS){
           console.log(sonuc);
-          adres_enboy=sonuc[0].geometry.location;
-          var aadres_enboy=typeof adres_enboy;
-          console.log(aadres_enboy);
+          adres_enboy=sonuc[0].geometry.location;//{lat:a_lat,lng:a_lng}//sonuc[0].geometry.location;
+          //var aadres_enboy=typeof adres_enboy;
+          //console.log(aadres_enboy);
           //adres_enboy=akonum;
           console.log(akonum);
           //cember_alani = new google.maps.Circle({
