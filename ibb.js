@@ -29,8 +29,8 @@ async function anlik_konumu_bul(){
   function basarili(kon){
     var k=kon.coords;
     const konum={
-      'lat':parseFloat(k.latitude),
-      'lng':parseFloat(k.longitude)
+      lat:parseFloat(k.latitude),
+      lng:parseFloat(k.longitude)
     }
     anlik_konum=konum;
     const a=JSON.parse(JSON.stringify(konum));
