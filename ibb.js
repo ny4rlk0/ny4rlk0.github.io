@@ -1,4 +1,4 @@
-var nyaVersion='v3/BETA'; //sürüm kodu / stabilite
+var nyaVersion='v4/BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
@@ -49,11 +49,6 @@ async function anlik_konumu_bul(){
   else{anlik_konum=ibb_bina;}
 }
 anlik_konumu_bul();
-//konumuBul();
-//anlik_konumu_bul();
-//Yer verilerimizi içeren veritabanımızı indirelim //Şu anlık aynı sunucuda
-//var json = (function() {
-//  var json = null;
 $.ajax({
   'async': true,
   'global': true,
@@ -68,12 +63,8 @@ $.ajax({
     }
   }
 });
-//  return json;
-//})();
-//console.clear();//Yanlış hata bildirimlerini temizleyelim
 //Mapi örnekle
 jQuery(document).ready(function(){
-  //var enboy = new google.maps.LatLng(41.013556652651154,28.95493828412249);//IBB Binası
   var ekAyarlar={
     zoom:18,
     center:anlik_konum_obje,//enboy,//anlik_konum,
@@ -95,7 +86,7 @@ jQuery(document).ready(function(){
 });
 async function konumuBul(){
           anlik_konumu_bul();
-          var yeni_isaretli_hedef=new google.maps.Marker({position:anlik_konum,map:harita,icon:'kirmizi_ok_x32.png',title:'Konum'});
+          var yeni_isaretli_hedef=new google.maps.Marker({position:anlik_konum_obje,map:harita,icon:'kirmizi_ok_x32.png',title:'Konum'});
           if(bilgipenceresi){
             bilgipenceresi.setMap(nyaa_desu);
             bilgipenceresi=nyaa_desu;
@@ -105,9 +96,9 @@ async function konumuBul(){
             bilgipenceresi = new google.maps.InfoWindow({
               content: '<div style="color:red">'+'Konumum'+'</div>'+'Mevcut Konumum.',
               size: new google.maps.Size(150,50),
-              pixelOffset: new google.maps.Size(0,-30),position:anlik_konum,map:harita
+              pixelOffset: new google.maps.Size(0,-30),position:anlik_konum_obje,map:harita
             });
-            bilgipenceresi.setPosition(anlik_konum);
+            bilgipenceresi.setPosition(anlik_konum_obje);
             bilgipenceresi.setContent('<div style="color:red">'+'Konumum'+'</div>'+'Mevcut Konumum.');
             
             harita.setCenter(anlik_konum);
@@ -115,7 +106,7 @@ async function konumuBul(){
           });
           //bilgipenceresi.open({anchor:Marker,harita,shouldFocus:true});//konum penceresini aç bir şekilde
           console.log('KonumuBul()');
-          harita.panTo(anlik_konum);//Haritada konumu ortala
+          harita.panTo(anlik_konum_obje);//Haritada konumu ortala
 }
 
 async function konumuAcKapa(){
@@ -139,13 +130,6 @@ async function konumuAcKapa(){
   else if (gidis_yontemi=='3'){gidis_yontemi='BICYCLING';}// Bisiklet
   else if (gidis_yontemi=='4'){gidis_yontemi='TRANSIT';}// Toplu Seyahat
   else {gidis_yontemi='DRIVING';}//Source code ile oynamışlar biz varsayılan seçeneğimize gidelim.
-  //adres_enboy= anlik_konum;
-  //const mevcut_konum=await konumuBul();
-  //Yeni açmadan önce alan ve işaretleri haritadan temizle.
-  //if (cember_alani){
-  //  cember_alani.setMap(nyaa_desu);//Çember alanını null yapalım.
-  //  cember_alani=nyaa_desu;
- // }
   for (neko=0;neko < haritada_isaretli_yerler.length; neko++){
     if(haritada_isaretli_yerler[neko]){
       haritada_isaretli_yerler[neko].setMap(nyaa_desu);
@@ -158,16 +142,6 @@ async function konumuAcKapa(){
         if(durum!=google.maps.GeocoderStatus.ZERO_RESULTS){
           console.log(sonuc);
           adres_enboy=sonuc[0].geometry.location;//{lat:a_lat,lng:a_lng}//sonuc[0].geometry.location;
-          //var aadres_enboy=typeof adres_enboy;
-          //console.log(aadres_enboy);
-          //adres_enboy=akonum;
-          //console.log(akonum);
-          //cember_alani = new google.maps.Circle({
-          //  center:adres_enboy,
-          //  radius:alan_km*1000,
-          //  clickable:false,
-          //  map:harita
-          //});
           if (ny4!='rlk0'){return;}// Hah jokes on you.
           console.log('Veritabanındaki konum sayısı: '+tum_konumlar.length);
           rotalariTemizle();
