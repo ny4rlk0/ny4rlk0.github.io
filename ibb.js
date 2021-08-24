@@ -26,9 +26,12 @@ Test modunu kapatarak gerçek konumunuz ile hesaplayabilirsiniz.
 Lakin veritabani.json içerisinde, belirttiğiniz dakikada size yakın bir konum yoksa.
 Konum bulunamadı uyarısı alacaksınız.`;
 async function anlik_konumu_bul(){
-  TestModu = $('#test_modu').val();
+  test = $('#test_modu').val();
+  if(test=='1'){TestModu=true;}//Test modu açık mı kapalı mı olsun
+  else if(test=='2'){TestModu=false;}
+  else{TestModu=true;}
   console.log('TestModu: '+TestModu);
-  if(TestModu==false){
+  if(TestModu==true){
   anlik_konum=nyaa_desu;
   function basarili(kon){
     var k=kon.coords;
