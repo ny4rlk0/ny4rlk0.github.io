@@ -92,7 +92,7 @@ jQuery(document).ready(function(){
   if (TestModu=true){alert(bilgilendirme_mesaji);}
 });
 async function konumuBul(){
-          await anlik_konumu_bul();
+          anlik_konumu_bul();
           var yeni_isaretli_hedef=new google.maps.Marker({position:anlik_konum,map:harita,icon:'kirmizi_ok_x32.png',title:'Konum'});
           if(bilgipenceresi){
             bilgipenceresi.setMap(nyaa_desu);
