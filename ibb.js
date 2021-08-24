@@ -45,7 +45,7 @@ async function anlik_konumu_bul(){
     const a=JSON.parse(JSON.stringify(konum));
     a_lat=parseFloat(a.lat);
     a_lng=parseFloat(a.lng);
-    anlik_konum_obje= new google.maps.LatLng(a_lat,a_lang);//new google.maps.LatLng(a_lat,a_lng);
+    anlik_konum_obje= new google.maps.LatLng(a_lat,a_lng);//new google.maps.LatLng(a_lat,a_lng);
     console.log(anlik_konum);
   }
   function hata(hat)
