@@ -27,8 +27,8 @@ Lakin veritabani.json içerisinde, belirttiğiniz dakikada size yakın bir konum
 Konum bulunamadı uyarısı alacaksınız.`;
 async function anlik_konumu_bul(){
   test = $('#test_modu').val();
-  if(test=='1'){TestModu=true;}//Test modu açık mı kapalı mı olsun
-  else if(test=='2'){TestModu=false;}
+  if(test==='1'){TestModu=true;}//Test modu açık mı kapalı mı olsun
+  else if(test==='2'){TestModu=false;}
   else{TestModu=true;}
   console.log('TestModu: '+TestModu);
   if(TestModu==true){
@@ -129,8 +129,8 @@ async function konumuAcKapa(){
   await konumuBul(); 
   var neko;
   test = $('#test_modu').val();
-  if(test=='1'){TestModu=true;}//Test modu açık mı kapalı mı olsun
-  else if(test=='2'){TestModu=false;}
+  if(test==='1'){TestModu=true;}//Test modu açık mı kapalı mı olsun
+  else if(test==='2'){TestModu=false;}
   else{TestModu=true;}
   console.log('TestModu: '+TestModu);
   gidis_yontemi = $('#gidis_yontemi').val(); //Neyle gidicek bu insanlar yürüyerek mi arabayla mı bisikletle mi?
