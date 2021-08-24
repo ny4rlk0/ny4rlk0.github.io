@@ -74,7 +74,7 @@ jQuery(document).ready(function(){
   //var enboy = new google.maps.LatLng(41.013556652651154,28.95493828412249);//IBB Binası
   var ekAyarlar={
     zoom:18,
-    center:anlik_konum,//enboy,//anlik_konum,
+    center:anlik_konum_obje,//enboy,//anlik_konum,
     mapTypeControl:true,
     mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
     navigationControl:true,
