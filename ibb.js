@@ -1,7 +1,7 @@
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
-var cember_alani,geocode,bilgipenceresi,anlik_konum,a_lat,a_lng,akonum=[];
+var cember_alani,geocode,bilgipenceresi,anlik_konum,anlik_konum_obje,a_lat,a_lng,akonum=[];
 var haritada_isaretli_yerler=[],tum_konumlar=[];
 var konum_ayarlari={enableHighAccuracy:true,timeout:5000,maximumAge:0};
 var TestModu=true;//Örnek konumlarla ve örnek veritabanıyla çalışır Gerçek veri tabanına geçeceğiniz zaman false yapın
@@ -41,11 +41,11 @@ async function anlik_konumu_bul(){
       'lat':parseFloat(k.latitude),
       'lng':parseFloat(k.longitude)
     }
-    //anlik_konum=konum;
+    anlik_konum=konum;
     const a=JSON.parse(JSON.stringify(konum));
     a_lat=parseFloat(a.lat);
     a_lng=parseFloat(a.lng);
-    anlik_konum= new google.maps.LatLng(a_lat,a_lang);//new google.maps.LatLng(a_lat,a_lng);
+    anlik_konum_obje= new google.maps.LatLng(a_lat,a_lang);//new google.maps.LatLng(a_lat,a_lng);
     console.log(anlik_konum);
   }
   function hata(hat)
