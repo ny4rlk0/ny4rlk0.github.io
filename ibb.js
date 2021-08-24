@@ -112,6 +112,7 @@ async function konumuBul(){
             haritada_isaretli_yerler.push(yeni_isaretli_hedef);
           });
           //bilgipenceresi.open({anchor:Marker,harita,shouldFocus:true});//konum penceresini aç bir şekilde
+          console.log('KonumuBul()');
           harita.panTo(anlik_konum_obje);//Haritada konumu ortala
 }
 
