@@ -47,6 +47,7 @@ async function anlik_konumu_bul(){
   }
   else{anlik_konum=ibb_bina;}
 }
+anlik_konumu_bul();
 //anlik_konumu_bul();
 //Yer verilerimizi içeren veritabanımızı indirelim //Şu anlık aynı sunucuda
 //var json = (function() {
@@ -71,7 +72,6 @@ $.ajax({
 //Mapi örnekle
 jQuery(document).ready(function(){
   //var enboy = new google.maps.LatLng(41.013556652651154,28.95493828412249);//IBB Binası
-  await anlik_konumu_bul();
   var ekAyarlar={
     zoom:18,
     center:anlik_konum,//enboy,//anlik_konum,
