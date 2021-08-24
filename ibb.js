@@ -10,16 +10,7 @@ var TestModu=true;//Örnek konumlarla ve örnek veritabanıyla çalışır Gerç
 //Veritabanına istanbuldaki bütün dükkan hastane kahveci vb. yerleri eklerseniz tam istediğiniz gibi çalışır.
 // Free trial status: ₺2,094.33 credit and 84 days remaining - with a full account, you'll get unlimited access to all of Google Cloud Platform.
 
-//Bunu databaseden çek, db bulabilirsen tabi.//Mockup database oluşturuldu çok az entry var....
-var ibb_bina={lat:41.013556652651154, lng:28.95493828412249}; //TODO:Kullanıcının mevcut konumunu almak için bir fonksiyon yaz.//Yapıldı.
-//var tum_konumlar2=[
-//  {type: "Hospital", name: "Haseki Eğitim ve Araştırma Hastanesi", lat:41.008995040019606, lng:28.94609990728967},
-//  {type: "Hotel", name: "Söğüt Hotel & SPA", lat:41.012846369714396, lng:28.955315586583936},
-//  {type: "shopping_mall", name: "Bisikletçiler Çarşısı", lat: 41.014758554322725, lng: 28.95432192194311},
-//  {type: "cafe", name: "Vefa Bozacısı", lat: 41.01536206176243, lng: 28.95838106367391},
-//  {type: "Hospital", name: "İstanbul Eğitim ve Araştırma Hastanesi", lat:41.00332174950435, lng:28.93773488338158}
-//];
-//Anlik konumumuzu bulalım
+var ibb_bina={lat:41.013556652651154, lng:28.95493828412249};
 const bilgilendirme_mesaji=`Bilgilendirme Mesajı:
 Sistem varsayılan ayarları yüzünden ve yeterince konum olmadığı için test modunda başlatıldı.
 Test modunu kapatarak gerçek konumunuz ile hesaplayabilirsiniz.
