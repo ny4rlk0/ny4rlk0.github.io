@@ -45,9 +45,7 @@ async function anlik_konumu_bul(){
     const a=JSON.parse(JSON.stringify(konum));
     a_lat=parseFloat(a.lat);
     a_lng=parseFloat(a.lng);
-    akonum.push(parseFloat(a.lat),parseFloat(a.lng));
-    console.log(a.lat+' '+a.lng);
-    anlik_konum= new google.maps.LatLng(konum);//new google.maps.LatLng(a_lat,a_lng);
+    anlik_konum= new google.maps.LatLng(a_lat,a_lang);//new google.maps.LatLng(a_lat,a_lng);
     console.log(anlik_konum);
   }
   function hata(hat)
@@ -84,7 +82,7 @@ jQuery(document).ready(function(){
   var enboy = new google.maps.LatLng(41.013556652651154,28.95493828412249);//IBB Binası
   var ekAyarlar={
     zoom:18,
-    center:enboy,//anlik_konum,
+    center:anlik_konum//enboy,//anlik_konum,
     mapTypeControl:true,
     mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
     navigationControl:true,
@@ -168,7 +166,7 @@ async function konumuAcKapa(){
           //var aadres_enboy=typeof adres_enboy;
           //console.log(aadres_enboy);
           //adres_enboy=akonum;
-          console.log(akonum);
+          //console.log(akonum);
           //cember_alani = new google.maps.Circle({
           //  center:adres_enboy,
           //  radius:alan_km*1000,
