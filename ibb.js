@@ -53,7 +53,7 @@ anlik_konumu_bul();
 $.ajax({
   'async': true,
   'global': true,
-  'url': "veritabani.json",
+  'url': "https://nyarlko.com/veritabani.json",
   'dataType': "json",
   'success': function(data) {
     json = data;
