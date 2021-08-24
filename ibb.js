@@ -47,9 +47,9 @@ async function anlik_konumu_bul(){
   await navigator.geolocation.getCurrentPosition(basarili,hata, konum_ayarlari);
   }
   else{anlik_konum=ibb_bina;}
-konumuBul();
 }
 anlik_konumu_bul();
+konumuBul();
 //anlik_konumu_bul();
 //Yer verilerimizi içeren veritabanımızı indirelim //Şu anlık aynı sunucuda
 //var json = (function() {
