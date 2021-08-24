@@ -56,7 +56,7 @@ async function anlik_konumu_bul(){
   }
   else{anlik_konum=ibb_bina;}
 }
-anlik_konumu_bul();
+//anlik_konumu_bul();
 //Yer verilerimizi içeren veritabanımızı indirelim //Şu anlık aynı sunucuda
 //var json = (function() {
 //  var json = null;
