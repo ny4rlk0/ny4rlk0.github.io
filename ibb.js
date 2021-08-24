@@ -130,6 +130,7 @@ async function konumuAcKapa(){
   if(test=='1'){TestModu=true;}//Test modu açık mı kapalı mı olsun
   else if(test=='2'){TestModu=false;}
   else{TestModu=true;}
+  console.log('TestModu: '+TestModu);
   gidis_yontemi = $('#gidis_yontemi').val(); //Neyle gidicek bu insanlar yürüyerek mi arabayla mı bisikletle mi?
   let dakika = $('#dakika').val();
   if (gidis_yontemi=='1'){gidis_yontemi='DRIVING';}// ARABA
