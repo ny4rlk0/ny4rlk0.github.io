@@ -43,11 +43,11 @@ async function anlik_konumu_bul(){
     }
     //anlik_konum=konum;
     const a=JSON.parse(JSON.stringify(konum));
-    a_lat=a.lat;
-    a_lng=a.lng;
+    a_lat=parseFloat(a.lat);
+    a_lng=parseFloat(a.lng);
     akonum.push(parseFloat(a.lat),parseFloat(a.lng));
     console.log(a.lat+' '+a.lng);
-    anlik_konum= new google.maps.LatLng(a.lat,a.lng);
+    anlik_konum= new google.maps.LatLng(konum);//new google.maps.LatLng(a_lat,a_lng);
     console.log(anlik_konum);
   }
   function hata(hat)
