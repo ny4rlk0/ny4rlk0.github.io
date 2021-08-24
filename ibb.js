@@ -1,3 +1,4 @@
+var nyaVersion='v1/BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
