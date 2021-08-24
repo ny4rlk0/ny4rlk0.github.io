@@ -31,7 +31,7 @@ async function anlik_konumu_bul(){
   else if(test===2){TestModu=false;}
   else{TestModu=true;}
   console.log('TestModu: '+TestModu);
-  if(TestModu==true){
+  if(TestModu=true){
   console.log('TestModu: '+TestModu);
   console.log('anlik_konumu_bul()');
   anlik_konum=nyaa_desu;
