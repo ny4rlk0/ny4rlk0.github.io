@@ -11,7 +11,7 @@ var TestModu=true;//Örnek konumlarla ve örnek veritabanıyla çalışır Gerç
 //Veritabanına istanbuldaki bütün dükkan hastane kahveci vb. yerleri eklerseniz tam istediğiniz gibi çalışır.
 // Free trial status: ₺2,094.33 credit and 84 days remaining - with a full account, you'll get unlimited access to all of Google Cloud Platform.
 
-var ibb_bina={lat:41.013556652651154, lng:28.95493828412249};
+var ibb_bina={'lat':41.013556652651154, 'lng':28.95493828412249};
 const bilgilendirme_mesaji=`Bilgilendirme Mesajı:
 Sistem varsayılan ayarları yüzünden ve yeterince konum olmadığı için test modunda başlatıldı.
 Test modunu kapatarak gerçek konumunuz ile hesaplayabilirsiniz.
@@ -47,6 +47,7 @@ async function anlik_konumu_bul(){
   await navigator.geolocation.getCurrentPosition(basarili,hata, konum_ayarlari);
   }
   else{anlik_konum=ibb_bina;}
+konumuBul();
 }
 anlik_konumu_bul();
 //anlik_konumu_bul();
@@ -94,7 +95,7 @@ jQuery(document).ready(function(){
 });
 async function konumuBul(){
           anlik_konumu_bul();
-          var yeni_isaretli_hedef=new google.maps.Marker({position:anlik_konum_obje,map:harita,icon:'kirmizi_ok_x32.png',title:'Konum'});
+          var yeni_isaretli_hedef=new google.maps.Marker({position:anlik_konum,map:harita,icon:'kirmizi_ok_x32.png',title:'Konum'});
           if(bilgipenceresi){
             bilgipenceresi.setMap(nyaa_desu);
             bilgipenceresi=nyaa_desu;
@@ -104,17 +105,17 @@ async function konumuBul(){
             bilgipenceresi = new google.maps.InfoWindow({
               content: '<div style="color:red">'+'Konumum'+'</div>'+'Mevcut Konumum.',
               size: new google.maps.Size(150,50),
-              pixelOffset: new google.maps.Size(0,-30),position:anlik_konum_obje,map:harita
+              pixelOffset: new google.maps.Size(0,-30),position:anlik_konum,map:harita
             });
-            bilgipenceresi.setPosition(anlik_konum_obje);
+            bilgipenceresi.setPosition(anlik_konum);
             bilgipenceresi.setContent('<div style="color:red">'+'Konumum'+'</div>'+'Mevcut Konumum.');
             
-            harita.setCenter(anlik_konum_obje);
+            harita.setCenter(anlik_konum);
             haritada_isaretli_yerler.push(yeni_isaretli_hedef);
           });
           //bilgipenceresi.open({anchor:Marker,harita,shouldFocus:true});//konum penceresini aç bir şekilde
           console.log('KonumuBul()');
-          harita.panTo(anlik_konum_obje);//Haritada konumu ortala
+          harita.panTo(anlik_konum);//Haritada konumu ortala
 }
 
 async function konumuAcKapa(){
