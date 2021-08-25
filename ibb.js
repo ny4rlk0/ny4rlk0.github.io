@@ -44,7 +44,7 @@ async function anlik_konumu_bul(){
   {
     console.log('Konumlandırma hatasi: '+hat);
   }
-  await navigator.geolocation.getCurrentPosition(basarili,hata, konum_ayarlari);
+  navigator.geolocation.getCurrentPosition(basarili,hata, konum_ayarlari);
   }
   else{anlik_konum=ibb_bina;}
 }
@@ -107,7 +107,7 @@ async function konumuBul(){
           });
           //bilgipenceresi.open({anchor:Marker,harita,shouldFocus:true});//konum penceresini aç bir şekilde
           console.log('KonumuBul()');
-          harita.panTo(anlik_konum_obje);//Haritada konumu ortala
+          harita.panTo(await anlik_konum_obje);//Haritada konumu ortala
 }
 async function konumual(){
     await konumuBul();
