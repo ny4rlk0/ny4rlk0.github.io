@@ -1,4 +1,4 @@
-var nyaVersion='v5/BETA'; //sürüm kodu / stabilite
+var nyaVersion='v6/BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
@@ -109,7 +109,10 @@ async function konumuBul(){
           console.log('KonumuBul()');
           harita.panTo(anlik_konum_obje);//Haritada konumu ortala
 }
-konumuBul();
+async function konumual(){
+    await konumuBul();
+} 
+konumual();
 async function konumuAcKapa(){
   async function rotalariTemizle(){
     console.log('Rotalar temizleniyor...');
