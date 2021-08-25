@@ -107,7 +107,7 @@ async function konumuBul(){
           });
           //bilgipenceresi.open({anchor:Marker,harita,shouldFocus:true});//konum penceresini aç bir şekilde
           console.log('KonumuBul()');
-          harita.panTo(await anlik_konum_obje);//Haritada konumu ortala
+          harita.panTo(anlik_konum_obje);//Haritada konumu ortala
 }
 async function konumuAcKapa(){
   async function rotalariTemizle(){
