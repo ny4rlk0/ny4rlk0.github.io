@@ -1,4 +1,4 @@
-var nyaVersion='v4/BETA'; //sürüm kodu / stabilite
+var nyaVersion='v5/BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
@@ -48,10 +48,7 @@ async function anlik_konumu_bul(){
   }
   else{anlik_konum=ibb_bina;}
 }
-async function konumuYenile(){
-await anlik_konumu_bul();
-await konumuBul();
-}
+
 
 $.ajax({
   'async': true,
@@ -88,8 +85,8 @@ jQuery(document).ready(function(){
   });
   if (TestModu=true){alert(bilgilendirme_mesaji);}
 });
-konumuYenile();
 async function konumuBul(){
+          await anlik_konumu_bul();
           var yeni_isaretli_hedef=new google.maps.Marker({position:anlik_konum_obje,map:harita,icon:'kirmizi_ok_x32.png',title:'Konum'});
           if(bilgipenceresi){
             bilgipenceresi.setMap(nyaa_desu);
@@ -112,7 +109,7 @@ async function konumuBul(){
           console.log('KonumuBul()');
           harita.panTo(anlik_konum_obje);//Haritada konumu ortala
 }
-
+konumuBul();
 async function konumuAcKapa(){
   async function rotalariTemizle(){
     console.log('Rotalar temizleniyor...');
