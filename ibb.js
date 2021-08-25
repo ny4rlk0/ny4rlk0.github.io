@@ -1,4 +1,4 @@
-var nyaVersion='v7/BETA'; //sürüm kodu / stabilite
+var nyaVersion='v8/BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
@@ -107,7 +107,7 @@ async function konumuBul(){
           });
           //bilgipenceresi.open({anchor:Marker,harita,shouldFocus:true});//konum penceresini aç bir şekilde
           console.log('KonumuBul()');
-          harita.panTo(anlik_konum_obje);//Haritada konumu ortala
+          harita.panTo(await anlik_konum_obje);//Haritada konumu ortala
 }
 async function konumual(){
     await konumuBul();
