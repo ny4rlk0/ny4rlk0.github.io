@@ -231,6 +231,7 @@ async function clearMap(){
     }
 }
 async function resetMap(){
+  anlik_konum_obje=new google.maps.LatLng(41.013652686519606,28.955476284027043);
   var ekAyarlar={
     zoom:18,
     center:anlik_konum_obje,//enboy,//anlik_konum,
