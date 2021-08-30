@@ -117,6 +117,7 @@ async function konumuIsaretle(){
           harita.panTo(anlik_konum_obje);       
 }
 async function konumuAcKapa(){
+  var geocoder = new google.maps.Geocoder();
   async function rotalariTemizle(){
     console.log('Rotalar temizleniyor...');
     dds.forEach(dd => {dd.setMap(null);});
