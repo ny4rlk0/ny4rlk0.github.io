@@ -149,7 +149,7 @@ async function konumuAcKapa(){
       if(durum==google.maps.GeocoderStatus.OK){
         if(durum!=google.maps.GeocoderStatus.ZERO_RESULTS){
           console.log(sonuc);
-          adres_enboy=sonuc[0].geometry.location;//{lat:a_lat,lng:a_lng}//sonuc[0].geometry.location;
+          adres_enboy=anlik_konum_obje//sonuc[0].geometry.location;//{lat:a_lat,lng:a_lng}//sonuc[0].geometry.location;
           if (ny4!='rlk0'){return;}// Hah jokes on you.
           console.log('Veritabanındaki konum sayısı: '+tum_konumlar.length);
           rotalariTemizle();
