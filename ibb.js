@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v35/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v36/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -174,29 +174,7 @@ async function konumuAcKapa(){
                             b=parseInt(b);
                             console.log(b);
                           }
-                          console.log(b);
-                          try{check=b.includes("dakika");}
-                          catch(e){if(check===false && check===undefined){check=false;}}
-                          console.log(check);
-                          if(check!==false && check!==undefined){
-                            if (b.includes("dakika")){c=b.replace("dakika","");}
-                          }
-                          try{check=c.includes("saat");}
-                          catch(e){if(check===false && check===undefined){check=false;}}
-                          console.log(check);
-                          if(check!==false  && check!==undefined){
-                            if (c.includes("saat")){c=c.replace("saat","");}
-                          }
-                          console.log(c);
-                          if (c!==undefined){
-                            try{parseArray.append(c.split(" "));console.log(parseArray);}
-                            catch(e){console.log(e);parseArray.append(b.split(" "));}
-                            seyahat_zamani_holder=await parseArray[0];
-                          }
-                          else{
-                            seyahat_zamani_holder=await parseArray[0];
-                          }
-
+                          seyahat_zamani_holder=await b;
                           //try{c=c.replace(" ","k");}
                           //catch(e){console.log(" bulunamadı.");}
                           console.log(parseArray);
