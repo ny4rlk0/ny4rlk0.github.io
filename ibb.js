@@ -167,7 +167,9 @@ async function konumuAcKapa(){
                           if(b.includes("saat")&&b.includes("dakika")){
                             b=b.replace("dakika","");
                             b=b.replace("saat","");
+                            console.log(b);
                             b=b.replace("  "," ");
+                            console.log(b);
                             b=b.split(" ");
                             yolcusaat=parseInt(b[0]);
                             yolcudakika=parseInt(b[2]);
