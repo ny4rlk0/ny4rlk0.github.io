@@ -34,6 +34,7 @@ async function loc(){
   anlik_konum_obje=nyaa_desu;
   await clearMap();
   await resetMap();
+  async function hata(hat){console.log("loc: "+hat);}
   async function basarili(kon){
     var k=kon.coords;
     const konum={'lat':parseFloat(k.latitude),'lng':parseFloat(k.longitude)}
@@ -46,7 +47,7 @@ async function loc(){
     konumuIsaretle();
     return anlik_konum_obje;
   }
-  navigator.geolocation.getCurrentPosition(basarili, konum_ayarlari);
+  navigator.geolocation.getCurrentPosition(basarili,hata, konum_ayarlari);
   return anlik_konum_obje;
 }
 async function addr(){
