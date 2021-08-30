@@ -166,7 +166,7 @@ async function konumuAcKapa(){
 
                           console.log(b);
                           try{check=b.includes("saat");}
-                          catch(e){if(check===false || check===undefined){check=false;}}
+                          catch(e){if(check===false && check===undefined){check=false;}}
                           console.log(check);
                           if(check!==false && check!==undefined){
                             if (b.includes("saat")){c=b.replace("saat","");}
@@ -174,8 +174,8 @@ async function konumuAcKapa(){
                           try{check=c.includes("dakika");}
                           catch(e){if(check===false && check===undefined){check=false;}}
                           console.log(check);
-                          if(check!==false  || check!==undefined){
-                          if (c.includes("dakika")){c=c.replace("dakika","");}
+                          if(check!==false  && check!==undefined){
+                            if (c.includes("dakika")){c=c.replace("dakika","");}
                           }
                           console.log(c);
                           const parseArray=c.split(" ");
