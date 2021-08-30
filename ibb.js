@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v21/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v28/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -68,7 +68,6 @@ async function addr(){
       }
     if (durum == google.maps.GeocoderStatus.OK){await x();}
   });}
-//AYNC FUNCTION ICINDE CAHIR.
 $.ajax({
   'async': true,
   'global': true,
@@ -169,13 +168,13 @@ async function konumuAcKapa(){
                           try{check=b.includes("saat");}
                           catch(e){if(check===false){check=undefined;}}
                           console.log(check);
-                          if(tanimsiz!==check && check!==false){
+                          if(tanimsiz!==check && check!==false || check!==undefined){
                             if (b.includes("saat")){c=b.replace("saat","");}
                           }
                           try{check=c.includes("dakika");}
                           catch(e){if(check===false){check=undefined;}}
                           console.log(check);
-                          if(tanimsiz!==check && check!==false){
+                          if(tanimsiz!==check && check!==false  || check!==undefined){
                           if (c.includes("dakika")){c=c.replace("dakika","");}
                           }
                           const parseArray=c.split(" ");
