@@ -3,21 +3,23 @@
 <head>
   <meta charset='UTF8'> <!---"ISO-8859-1"--->  
   <title>Nyarlko, GPS</title>
+  <link rel="stylesheet" href="style.css">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <script src="https://nyarlko.com/jquery-3.6.0.min.js" async></script>
+  <script src="jquery-3.6.0.min.js" async></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqtAwURKolIi5LqMaEtAnmOKs61MCcRZE&libraries=geometry"></script>
-  <script src="https://nyarlko.com/ibb.js" async></script>
+  <script src="ibb.js" async></script>
   <link rel="icon" href="https://nyarlko.com/favicon.ico">
 </head>
 <body style="margin:0px; padding:0px;" >
-  <!--input id="adres" value="T.C. İstanbul Büyükşehir Belediyesi Başkanlığı" placeholder="Adres giriniz"/-->
+  <center>
+  <b>Adres: </b>
+  <input id="adres" value="T.C. İstanbul Büyükşehir Belediyesi Başkanlığı" placeholder="Adres giriniz">
   <b>Dakika: </b>
-  <input id="dakika" value="10" placeholder="Dakika, Sayı. (örnek:15)"/>
-  <button onClick="konumuBul()">Konumu Göster</button>
-  <div id="kon_bul"  style="width:250px; height:50px;">
-  <button onClick="konumuAcKapa()">Alandaki konumları göster</button></div>
+  <input id="dakika" value="10" placeholder="Dakika, Sayı. (örnek:15)"/>  
+  </center>
+  <center>
   <b>Gidiş Yöntemi: </b>
   <select id="gidis_yontemi">
     <option value=1>Araba</option>
@@ -25,13 +27,19 @@
     <option value=3>Bisiklet</option>
     <option value=4>Toplu Taşıma</option>
   </select>
-  <b>Test modu: </b>
-  <select id="test_modu">
-    <option value=1>Açık</option>//Test modu
-    <option value=2>Kapalı</option>//Gerçek dünya modu
+  <b>Sorgulama Modu: </b>
+  <select id="sorgulama_modu">
+    <option value=1>Otomatik konum bulma</option>
+    <option value=2>Adresi elle girme</option>
   </select>
-  <div id="map_arayuzu"  style="width:1250px; height:550px;"></div>
-<!-- 16 Ağustos 2021 - 24 Ağustos 2021 nyarlko tarafından ❤ ile kodlanmıştır! -->
-  <small>Bütün hakları saklıdır.  2021 © nyarlko.com</small>
+  </center>
+  <center>
+  <div id="kon_bul"  style="width:250px; height:50px;">
+  <button onClick="konumuAcKapa()">Gidilebilecek yerleri bul</button><!--/div-->
+  <button onClick="anlik_konumu_bul()">Konumu Göster</button></div></center>
+  <!--div id="map_arayuzu"  style="width:1250px; height:550px;"></div-->
+  <div id="map_arayuzu"></div>
+<!-- 16 Ağustos 2021 - 30 Ağustos 2021 nyarlko tarafından ❤ ile kodlanmıştır! -->
+  <center><small>2021 © Nyarlko Tüm hakları gizlidir.</small></center>
 </body>
 </html>
