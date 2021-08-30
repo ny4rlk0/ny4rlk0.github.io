@@ -3,7 +3,7 @@ var nyaVersion='v20/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
-var cember_alani,geocode,bilgipenceresi,anlik_konum,anlik_konum_obje,a_lat,a_lng,akonum=[],adresObje,adresMarker=[];
+var cember_alani,geocode,bilgipenceresi,anlik_konum,anlik_konum_obje=new google.maps.LatLng(41.013652686519606,28.955476284027043),a_lat,a_lng,akonum=[],adresObje,adresMarker=[];
 var haritada_isaretli_yerler=[],tum_konumlar=[];
 var konum_ayarlari={enableHighAccuracy:true,timeout:5000,maximumAge:0};
 var sorgulama_modu=1;//Örnek konumlarla ve örnek veritabanıyla çalışır Gerçek veri tabanına geçeceğiniz zaman false yapın
