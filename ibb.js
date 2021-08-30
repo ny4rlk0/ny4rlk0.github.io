@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v22/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v24/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
@@ -154,7 +154,7 @@ async function konumuAcKapa(){
                   (async function (konum){
                           let dk=parseInt(dakika);//dakikayı integer dönüştürüp dk değişkenine atayalım
                           var hedef_enboy = new google.maps.LatLng(parseFloat(konum.lat),parseFloat(konum.lng));
-                          let seyahat_zamani_holder,a,b;
+                          let seyahat_zamani_holder,a,b,c;
                           console.log('AdresEnBoy: '+adres_enboy);
                           console.log('AnlikKonum: '+anlik_konum);
                           var konumdan_hedefe_uzaklik= google.maps.geometry.spherical.computeDistanceBetween(adres_enboy,hedef_enboy);//Bulunduğun konum ile işaret arasındaki metre cinsinden mesafe
@@ -165,9 +165,9 @@ async function konumuAcKapa(){
                           b= await b.routes[0].legs[0].duration.text;//Cevap objesinden sadece Seyahat zamanını alalım
 
                           console.log(b);
-                          try{b.replace("saat","");}
+                          try{c=b.replace("saat","");}
                           catch(e){console.log("Saat bulunamadı.");}
-                          try{b.replace("dakika","");  }
+                          try{c=b.replace("dakika","");}
                           catch(e){console.log("Dakika bulunamadı.");}
                           console.log(b);
                           nekowait(200);//200ms bekleme süresi koyalım rota başına hesaplama için.
