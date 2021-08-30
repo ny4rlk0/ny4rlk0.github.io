@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v21/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v22/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
@@ -17,10 +17,6 @@ Test modunu kapatarak gerçek konumunuz ile hesaplayabilirsiniz.
 Lakin veritabani.json içerisinde, belirttiğiniz dakikada size yakın bir konum yoksa.
 Konum bulunamadı uyarısı alacaksınız.`;
 async function anlik_konumu_bul(){
-  anlik_konum=nyaa_desu;
-  anlik_konum_obje=nyaa_desu;
-  await clearMap();
-  await resetMap();
   adres = $('#adres').val();
   sorgulama_modu = $('#sorgulama_modu').val();
   if (sorgulama_modu==1){sorgulama_modu="otomatik";}
@@ -33,6 +29,10 @@ async function anlik_konumu_bul(){
   else if(sorgulama_modu==="otomatik"){console.log('SorgulamaModu: '+sorgulama_modu);await loc();}
 }
 async function loc(){
+  anlik_konum=nyaa_desu;
+  anlik_konum_obje=nyaa_desu;
+  await clearMap();
+  await resetMap();
   async function hata(hat){console.log("loc: "+hat);}
   async function basarili(kon){
     var k=kon.coords;
@@ -41,7 +41,7 @@ async function loc(){
     const a=JSON.parse(JSON.stringify(konum));
     a_lat=parseFloat(a.lat);
     a_lng=parseFloat(a.lng);
-    anlik_konum_obje= new google.maps.LatLng(a_lat,a_lng);
+    anlik_konum_obje= await new google.maps.LatLng(a_lat,a_lng);
     console.log(anlik_konum);
     await konumuIsaretle();
     return anlik_konum_obje;
@@ -50,6 +50,10 @@ async function loc(){
   return anlik_konum_obje;
 }
 async function addr(){
+  anlik_konum=nyaa_desu;
+  anlik_konum_obje=nyaa_desu;
+  await clearMap();
+  await resetMap();
   var geocoder = new google.maps.Geocoder();
   await geocoder.geocode( { 'address': adres}, async function(sonuc, durum) {
     async function x(){
@@ -145,11 +149,10 @@ async function konumuAcKapa(){
           adres_enboy=anlik_konum_obje//sonuc[0].geometry.location;//{lat:a_lat,lng:a_lng}//sonuc[0].geometry.location;
           if (ny4!='rlk0'){return;}// Hah jokes on you.
           console.log('Veritabanındaki konum sayısı: '+tum_konumlar.length);
-          rotalariTemizle();
+          rotalariTemizle();//haritadaki rotaları kaldır.
     //if(cember_alani) harita.fitBounds(cember_alani.getBounds());
           for (var miyav=0;miyav<tum_konumlar.length;miyav++){
                   (async function (konum){
-                          //await clearMap();
                           let dk=parseInt(dakika);//dakikayı integer dönüştürüp dk değişkenine atayalım
                           var hedef_enboy = new google.maps.LatLng(parseFloat(konum.lat),parseFloat(konum.lng));
                           let seyahat_zamani_holder,a,b;
@@ -161,9 +164,7 @@ async function konumuAcKapa(){
                           b= await JSON.parse(JSON.stringify(a));//Cevap Objesini stringe dönüştürelim
                           //console.log(a); //konum bilgilerini görmek istiyorsan uncomment yap
                           b= await b.routes[0].legs[0].duration.text;//Cevap objesinden sadece Seyahat zamanını alalım
-                          console.log(b);
-                          //b= await b.split(" ");// Seyahat zamanı stringini (örnek: 1 dakika) 2 parçaya ayıralım
-                          //seyahat_zamani_holder=await b[0];//Sadece sayı kısmını alalım. (Sayı olabilir ama hala string.)                          
+                          console.log(b);                       
                           nekowait(200);//200ms bekleme süresi koyalım rota başına hesaplama için.
                           seyahat_zamani_holder=await b;
                           let local_sure=parseInt(seyahat_zamani_holder);//seyahat zamani integer dönüştürüp local_sure değişkenine atayalım                     
@@ -231,7 +232,6 @@ async function clearMap(){
     }
 }
 async function resetMap(){
-  anlik_konum_obje=new google.maps.LatLng(41.013652686519606,28.955476284027043);
   var ekAyarlar={
     zoom:18,
     center:anlik_konum_obje,//enboy,//anlik_konum,
