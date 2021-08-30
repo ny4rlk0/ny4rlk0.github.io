@@ -31,6 +31,9 @@ async function anlik_konumu_bul(){
 }
 async function loc(){
   anlik_konum=nyaa_desu;
+  anlik_konum_obje=nyaa_desu;
+  await clearMap();
+  await resetMap();
   async function basarili(kon){
     var k=kon.coords;
     const konum={'lat':parseFloat(k.latitude),'lng':parseFloat(k.longitude)}
