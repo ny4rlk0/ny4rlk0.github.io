@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v40/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v41/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -154,7 +154,7 @@ async function konumuAcKapa(){
                   (async function (konum){
                           let dk=parseInt(dakika);//dakikayı integer dönüştürüp dk değişkenine atayalım
                           var hedef_enboy = new google.maps.LatLng(parseFloat(konum.lat),parseFloat(konum.lng));
-                          let seyahat_zamani_holder,a,b,c,d,e,check;
+                          let seyahat_zamani_holder,a,b,c,yolcusaat,yolcudakika;
                           const parseArray=[];
                           console.log('AdresEnBoy: '+adres_enboy);
                           console.log('AnlikKonum: '+anlik_konum);
@@ -168,7 +168,10 @@ async function konumuAcKapa(){
                             b=b.replace("dakika","");
                             b=b.replace("saat","");
                             b=b.replace("  "," ");
-                            console.log(b);
+                            yolcusaat=parseINT(b[0]);
+                            yolcudakika=parseINT(b[2]);
+                            console.log("s: "+yolcusaat);
+                            console.log("d: "+yolcudakika);
                           }
                           else if(b.includes("dakika")&&!b.includes("saat")){
                             b=b.replace("dakika","");
