@@ -163,13 +163,12 @@ async function konumuAcKapa(){
                           b= await JSON.parse(JSON.stringify(a));//Cevap Objesini stringe dönüştürelim
                           //console.log(a); //konum bilgilerini görmek istiyorsan uncomment yap
                           b= await b.routes[0].legs[0].duration.text;//Cevap objesinden sadece Seyahat zamanını alalım
-
                           console.log(b);
                           try{c=b.replace("saat","");}
                           catch(e){console.log("Saat bulunamadı.");}
-                          try{c=b.replace("dakika","");}
+                          try{c=c.replace("dakika","");}
                           catch(e){console.log("Dakika bulunamadı.");}
-                          console.log(b);
+                          console.log(c);
                           nekowait(200);//200ms bekleme süresi koyalım rota başına hesaplama için.
                           seyahat_zamani_holder=await b;
                           let local_sure=parseInt(seyahat_zamani_holder);//seyahat zamani integer dönüştürüp local_sure değişkenine atayalım                     
