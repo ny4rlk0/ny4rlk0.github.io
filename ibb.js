@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v30/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v32/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -155,6 +155,7 @@ async function konumuAcKapa(){
                           let dk=parseInt(dakika);//dakikayı integer dönüştürüp dk değişkenine atayalım
                           var hedef_enboy = new google.maps.LatLng(parseFloat(konum.lat),parseFloat(konum.lng));
                           let seyahat_zamani_holder,a,b,c,d,e,check;
+                          const parseArray;
                           console.log('AdresEnBoy: '+adres_enboy);
                           console.log('AnlikKonum: '+anlik_konum);
                           var konumdan_hedefe_uzaklik= google.maps.geometry.spherical.computeDistanceBetween(adres_enboy,hedef_enboy);//Bulunduğun konum ile işaret arasındaki metre cinsinden mesafe
@@ -178,13 +179,13 @@ async function konumuAcKapa(){
                             if (c.includes("dakika")){c=c.replace("dakika","");}
                           }
                           console.log(c);
-                          const parseArray=c.split(" ");
-
+                          try{const parseArray=c.split(" ");}
+                          catch(e){parseArray=undefined;}
                           //try{c=c.replace(" ","k");}
                           //catch(e){console.log(" bulunamadı.");}
                           console.log(parseArray);
                           nekowait(200);//200ms bekleme süresi koyalım rota başına hesaplama için.
-                          seyahat_zamani_holder=await b;
+                          seyahat_zamani_holder=await c;
                           let local_sure=parseInt(seyahat_zamani_holder);//seyahat zamani integer dönüştürüp local_sure değişkenine atayalım                     
                           if (local_sure<=dk ){//&& konumdan_hedefe_uzaklik<=dk*1000){//konumdan_hedefe_uzaklik<=alan_km*1000){// Sadece seçilen süreden az zamanda gidilebilecek yerler gösterilsin. (konumdan_hedefe_uzaklik<=alan_km*1000)
                                   const dd= new google.maps.DirectionsRenderer({suppressMarkers:true});//suppressMarkers İşaretleri kaldırıyor A B şeklindeki
