@@ -149,7 +149,7 @@ async function konumuAcKapa(){
     }
   }
   if(geocoder){//      'location':anlik_konum
-    geocoder.geocode({'location':anlik_konum_obje},function(sonuc,durum){// 
+    geocoder.geocode({'location':anlik_konum},function(sonuc,durum){// 
       if(durum==google.maps.GeocoderStatus.OK){
         if(durum!=google.maps.GeocoderStatus.ZERO_RESULTS){
           console.log(sonuc);
