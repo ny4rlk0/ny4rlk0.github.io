@@ -2,6 +2,15 @@
        * element that contains the map. */
 #harita {
   height: 100%;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  border: 15px solid orange
+}
+#map_arayuzu {
+  height: 100%;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  border: 15px solid orange
 }
 
 /* Optional: Makes the sample page fill the window. */
@@ -10,4 +19,10 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: orange;
+}
+#screenFiller {
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    border: 15px solid orange
 }
