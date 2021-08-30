@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v33/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v34/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -180,8 +180,8 @@ async function konumuAcKapa(){
                           }
                           console.log(c);
                           if (c!==undefined){
-                            try{parseArray=c.split(" ");console.log(parseArray);}
-                            catch(e){console.log(e);parseArray=b.split(" ");}
+                            try{parseArray.append(c.split(" "));console.log(parseArray);}
+                            catch(e){console.log(e);parseArray.append(b.split(" "));}
                             seyahat_zamani_holder=await parseArray[0];
                           }
                           else{
