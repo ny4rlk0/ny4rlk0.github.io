@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v22/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v23/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
@@ -29,10 +29,10 @@ async function anlik_konumu_bul(){
   else if(sorgulama_modu==="otomatik"){console.log('SorgulamaModu: '+sorgulama_modu);await loc();}
 }
 async function loc(){
-  anlik_konum=nyaa_desu;
-  anlik_konum_obje=nyaa_desu;
-  await clearMap();
-  await resetMap();
+  //anlik_konum=nyaa_desu;
+  //anlik_konum_obje=nyaa_desu;
+  //await clearMap();
+  //await resetMap();
   async function hata(hat){console.log("loc: "+hat);}
   async function basarili(kon){
     var k=kon.coords;
@@ -50,17 +50,16 @@ async function loc(){
   return anlik_konum_obje;
 }
 async function addr(){
-  anlik_konum=nyaa_desu;
-  anlik_konum_obje=nyaa_desu;
-  await clearMap();
-  await resetMap();
+  //anlik_konum=nyaa_desu;
+  //anlik_konum_obje=nyaa_desu;
+  //await resetMap();
   var geocoder = new google.maps.Geocoder();
   await geocoder.geocode( { 'address': adres}, async function(sonuc, durum) {
     async function x(){
       var lat= parseFloat(sonuc[0].geometry.location.lat());
       var lng= parseFloat(sonuc[0].geometry.location.lng());
       console.log("lat: "+lat+"lng: "+lng);
-      anlik_konum_obje= new google.maps.LatLng(lat,lng);
+      anlik_konum_obje= await new google.maps.LatLng(lat,lng);
       anlik_konum={'lat':lat,' lng':lng}
       console.log("AKO: "+anlik_konum_obje);
       console.log("AK: "+anlik_konum);
