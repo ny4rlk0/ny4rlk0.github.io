@@ -99,7 +99,7 @@ jQuery(document).ready(async function(){
 });
 async function konumuIsaretle(){
           try{yeni_isaretli_hedef.setMap(nyaa_desu);}//Önce marker varsa Markeri sil
-          catch(e){console.log(e);}
+          catch(e){console.log("İşaretli yerler temizlendi.");}
           var yeni_isaretli_hedef=new google.maps.Marker({position:anlik_konum_obje,map:harita,icon:'kirmizi_ok_x32.png',title:'Konum'});
           if(bilgipenceresi){
             bilgipenceresi.setMap(nyaa_desu);
