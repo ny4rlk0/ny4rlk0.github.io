@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v24/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v21/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
@@ -154,7 +154,7 @@ async function konumuAcKapa(){
                   (async function (konum){
                           let dk=parseInt(dakika);//dakikayı integer dönüştürüp dk değişkenine atayalım
                           var hedef_enboy = new google.maps.LatLng(parseFloat(konum.lat),parseFloat(konum.lng));
-                          let seyahat_zamani_holder,a,b,c;
+                          let seyahat_zamani_holder,a,b,c,d,e;
                           console.log('AdresEnBoy: '+adres_enboy);
                           console.log('AnlikKonum: '+anlik_konum);
                           var konumdan_hedefe_uzaklik= google.maps.geometry.spherical.computeDistanceBetween(adres_enboy,hedef_enboy);//Bulunduğun konum ile işaret arasındaki metre cinsinden mesafe
@@ -163,12 +163,20 @@ async function konumuAcKapa(){
                           b= await JSON.parse(JSON.stringify(a));//Cevap Objesini stringe dönüştürelim
                           //console.log(a); //konum bilgilerini görmek istiyorsan uncomment yap
                           b= await b.routes[0].legs[0].duration.text;//Cevap objesinden sadece Seyahat zamanını alalım
+
                           console.log(b);
                           try{c=b.replace("saat","");}
                           catch(e){console.log("Saat bulunamadı.");}
                           try{c=c.replace("dakika","");}
                           catch(e){console.log("Dakika bulunamadı.");}
-                          console.log(c);
+                          const parseArray=c.split(" ");
+                          d=parseArray[0];
+                          e=parseArray[2];
+                          console.log("saat"+d);
+                          console.log("dakika"+e);
+                          //try{c=c.replace(" ","k");}
+                          //catch(e){console.log(" bulunamadı.");}
+                          console.log(parseArray);
                           nekowait(200);//200ms bekleme süresi koyalım rota başına hesaplama için.
                           seyahat_zamani_holder=await b;
                           let local_sure=parseInt(seyahat_zamani_holder);//seyahat zamani integer dönüştürüp local_sure değişkenine atayalım                     
