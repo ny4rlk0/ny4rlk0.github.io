@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v23/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v22/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
@@ -163,7 +163,13 @@ async function konumuAcKapa(){
                           b= await JSON.parse(JSON.stringify(a));//Cevap Objesini stringe dönüştürelim
                           //console.log(a); //konum bilgilerini görmek istiyorsan uncomment yap
                           b= await b.routes[0].legs[0].duration.text;//Cevap objesinden sadece Seyahat zamanını alalım
-                          console.log(b);                       
+
+                          console.log(b);
+                          try{b.replace("saat","");}
+                          catch(e){console.log("Saat bulunamadı.");}
+                          try{b.replace("dakika","");  }
+                          catch(e){console.log("Dakika bulunamadı.");}
+                          console.log(b);
                           nekowait(200);//200ms bekleme süresi koyalım rota başına hesaplama için.
                           seyahat_zamani_holder=await b;
                           let local_sure=parseInt(seyahat_zamani_holder);//seyahat zamani integer dönüştürüp local_sure değişkenine atayalım                     
