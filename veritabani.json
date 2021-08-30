@@ -1,5 +1,7 @@
 {
-	"veritabani": [{
+	"veritabani": 
+	[
+		{
 			"type": "Hospital",
 			"name": "Haseki Eğitim ve Araştırma Hastanesi",
 			"lat": 41.008995040019606,
@@ -58,12 +60,6 @@
 			"name": "Tavşan Vadisi",  
 			"lat": 41.20140559039994,
 			"lng": 28.446455684607535
-		}, 
-		{  
-			"type": "restaurant",
-			"name": "Tavşan Vadisi",   
-			"lat": 41.20140508587728,
-			"lng": 28.44645769626417
 		}
 	]
 }
