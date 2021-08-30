@@ -17,7 +17,10 @@ Test modunu kapatarak gerçek konumunuz ile hesaplayabilirsiniz.
 Lakin veritabani.json içerisinde, belirttiğiniz dakikada size yakın bir konum yoksa.
 Konum bulunamadı uyarısı alacaksınız.`;
 async function anlik_konumu_bul(){
-  clearMap();
+  anlik_konum=nyaa_desu;
+  anlik_konum_obje=nyaa_desu;
+  await clearMap();
+  await resetMap();
   adres = $('#adres').val();
   sorgulama_modu = $('#sorgulama_modu').val();
   if (sorgulama_modu==1){sorgulama_modu="otomatik";}
@@ -30,10 +33,6 @@ async function anlik_konumu_bul(){
   else if(sorgulama_modu==="otomatik"){console.log('SorgulamaModu: '+sorgulama_modu);await loc();}
 }
 async function loc(){
-  anlik_konum=nyaa_desu;
-  anlik_konum_obje=nyaa_desu;
-  await clearMap();
-  await resetMap();
   async function hata(hat){console.log("loc: "+hat);}
   async function basarili(kon){
     var k=kon.coords;
@@ -51,10 +50,6 @@ async function loc(){
   return anlik_konum_obje;
 }
 async function addr(){
-  anlik_konum=nyaa_desu;
-  anlik_konum_obje=nyaa_desu;
-  await clearMap();
-  await resetMap();
   var geocoder = new google.maps.Geocoder();
   await geocoder.geocode( { 'address': adres}, async function(sonuc, durum) {
     async function x(){
