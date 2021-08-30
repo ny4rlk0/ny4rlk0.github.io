@@ -155,7 +155,7 @@ async function konumuAcKapa(){
                           let dk=parseInt(dakika);//dakikayı integer dönüştürüp dk değişkenine atayalım
                           var hedef_enboy = new google.maps.LatLng(parseFloat(konum.lat),parseFloat(konum.lng));
                           let seyahat_zamani_holder,a,b,c,d,e,check;
-                          const parseArray;
+                          const parseArray=[];
                           console.log('AdresEnBoy: '+adres_enboy);
                           console.log('AnlikKonum: '+anlik_konum);
                           var konumdan_hedefe_uzaklik= google.maps.geometry.spherical.computeDistanceBetween(adres_enboy,hedef_enboy);//Bulunduğun konum ile işaret arasındaki metre cinsinden mesafe
@@ -179,7 +179,7 @@ async function konumuAcKapa(){
                             if (c.includes("dakika")){c=c.replace("dakika","");}
                           }
                           console.log(c);
-                          try{const parseArray=c.split(" ");}
+                          try{parseArray=c.split(" ");}
                           catch(e){parseArray=undefined;}
                           //try{c=c.replace(" ","k");}
                           //catch(e){console.log(" bulunamadı.");}
