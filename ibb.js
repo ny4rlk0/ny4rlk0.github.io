@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v48/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v49/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -165,6 +165,7 @@ async function konumuAcKapa(){
                           //console.log(a); //konum bilgilerini görmek istiyorsan uncomment yap
                           b= await b.routes[0].legs[0].duration.text;//Cevap objesinden sadece Seyahat zamanını alalım
                           if(b.includes("saat")&&b.includes("dakika")){
+                            let seza=[];
                             console.log(b);
                             b=b.replace("dakika","");
                             b=b.replace("saat","");
@@ -172,10 +173,11 @@ async function konumuAcKapa(){
                             b=b.replace("  "," ");
                             console.log(b);
                             b=b.split(" ");
-                            b.length(2);
-                            console.log(b);
-                            yolcusaat=parseInt(b[0]);
-                            yolcudakika=parseInt(b[1]);
+                            seza.append(b[0]);
+                            seza.append(b[1]);
+                            console.log(seza);
+                            yolcusaat=parseInt(seza[0]);
+                            yolcudakika=parseInt(seza[1]);
                             console.log("s: "+yolcusaat);
                             console.log("d: "+yolcudakika);
                           }
