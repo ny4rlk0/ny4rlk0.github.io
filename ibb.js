@@ -168,11 +168,11 @@ async function konumuAcKapa(){
                           try{check=b.includes("saat");}
                           catch(e){if(check===false || check===undefined){check=false;}}
                           console.log(check);
-                          if(check!==false || check!==undefined){
+                          if(check!==false && check!==undefined){
                             if (b.includes("saat")){c=b.replace("saat","");}
                           }
                           try{check=c.includes("dakika");}
-                          catch(e){if(check===false || check===undefined){check=false;}}
+                          catch(e){if(check===false && check===undefined){check=false;}}
                           console.log(check);
                           if(check!==false  || check!==undefined){
                           if (c.includes("dakika")){c=c.replace("dakika","");}
