@@ -180,7 +180,7 @@ async function konumuAcKapa(){
                           }
                           console.log(c);
                           try{parseArray=c.split(" ");}
-                          catch(e){parseArray=undefined;}
+                          catch(e){console.log(" ");}
                           //try{c=c.replace(" ","k");}
                           //catch(e){console.log(" bulunamadı.");}
                           console.log(parseArray);
