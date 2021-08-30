@@ -1,7 +1,8 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v21/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v24/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
+const tanimsiz;
 let harita,gidis_yontemi='DRIVING';
 var cember_alani,geocode,bilgipenceresi,anlik_konum,anlik_konum_obje=new google.maps.LatLng(41.013652686519606,28.955476284027043),a_lat,a_lng,akonum=[],adresObje,adresMarker=[];
 var haritada_isaretli_yerler=[],tum_konumlar=[];
@@ -154,7 +155,7 @@ async function konumuAcKapa(){
                   (async function (konum){
                           let dk=parseInt(dakika);//dakikayı integer dönüştürüp dk değişkenine atayalım
                           var hedef_enboy = new google.maps.LatLng(parseFloat(konum.lat),parseFloat(konum.lng));
-                          let seyahat_zamani_holder,a,b,c,d,e;
+                          let seyahat_zamani_holder,a,b,c,d,e,check;
                           console.log('AdresEnBoy: '+adres_enboy);
                           console.log('AnlikKonum: '+anlik_konum);
                           var konumdan_hedefe_uzaklik= google.maps.geometry.spherical.computeDistanceBetween(adres_enboy,hedef_enboy);//Bulunduğun konum ile işaret arasındaki metre cinsinden mesafe
@@ -165,15 +166,17 @@ async function konumuAcKapa(){
                           b= await b.routes[0].legs[0].duration.text;//Cevap objesinden sadece Seyahat zamanını alalım
 
                           console.log(b);
-                          try{c=b.replace("saat","");}
-                          catch(e){console.log("Saat bulunamadı.");}
-                          try{c=c.replace("dakika","");}
-                          catch(e){console.log("Dakika bulunamadı.");}
+                          check=b.includes("saat");
+                          console.log(check);
+                          if(tanimsiz!==check){
+                            if (b.includes("saat")){c=b.replace("saat","");}
+                          }
+                          check=c.includes("dakika");
+                          if(tanimsiz!==check){
+                          if (c.includes("dakika")){c=c.replace("dakika","");}
+                          }
                           const parseArray=c.split(" ");
-                          d=parseArray[0];
-                          e=parseArray[2];
-                          console.log("saat"+d);
-                          console.log("dakika"+e);
+                          console.log(c);
                           //try{c=c.replace(" ","k");}
                           //catch(e){console.log(" bulunamadı.");}
                           console.log(parseArray);
