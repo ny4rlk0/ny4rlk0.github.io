@@ -1,16 +1,15 @@
-var nyaVersion='v8/BETA'; //sürüm kodu / stabilite
+//2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
+var nyaVersion='v20/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
-var cember_alani,geocode,bilgipenceresi,anlik_konum,anlik_konum_obje,a_lat,a_lng,akonum=[];
+var cember_alani,geocode,bilgipenceresi,anlik_konum,anlik_konum_obje,a_lat,a_lng,akonum=[],adresObje,adresMarker=[];
 var haritada_isaretli_yerler=[],tum_konumlar=[];
 var konum_ayarlari={enableHighAccuracy:true,timeout:5000,maximumAge:0};
-var TestModu=true;//Örnek konumlarla ve örnek veritabanıyla çalışır Gerçek veri tabanına geçeceğiniz zaman false yapın
+var sorgulama_modu=1;//Örnek konumlarla ve örnek veritabanıyla çalışır Gerçek veri tabanına geçeceğiniz zaman false yapın
 //False  oldugu zaman test modunu kapatır gerçek konumunuzu çeker ve veritabanındaki konumlarla karşılatırır.
 //Ben sadece ibb çevresindeki birkaç örneklem grubu ekledim google izin almadan içeriğinini çevrim dışı yapmak sözleşmelerine aykırı. //Aslında üşendim önceki bahane daha güzeldi. //ve bütün konumları çekseydim test bütçesinin üstüne çıkardım. Google free hesabıyla yaptım malum.
 //Veritabanına istanbuldaki bütün dükkan hastane kahveci vb. yerleri eklerseniz tam istediğiniz gibi çalışır.
-// Free trial status: ₺2,094.33 credit and 84 days remaining - with a full account, you'll get unlimited access to all of Google Cloud Platform.
-
 var ibb_bina={'lat':41.013556652651154, 'lng':28.95493828412249};
 const bilgilendirme_mesaji=`Bilgilendirme Mesajı:
 Sistem varsayılan ayarları yüzünden ve yeterince konum olmadığı için test modunda başlatıldı.
@@ -18,42 +17,68 @@ Test modunu kapatarak gerçek konumunuz ile hesaplayabilirsiniz.
 Lakin veritabani.json içerisinde, belirttiğiniz dakikada size yakın bir konum yoksa.
 Konum bulunamadı uyarısı alacaksınız.`;
 async function anlik_konumu_bul(){
-  test = $('#test_modu').val();
-  if(test===1){TestModu=true;}//Test modu açık mı kapalı mı olsun
-  else if(test===2){TestModu=false;}
-  else{TestModu=true;}
-  console.log('TestModu: '+TestModu);
-  if(TestModu=true){//False olcak burası yanlış ama test amacıyla düzletmedim.
-  console.log('TestModu: '+TestModu);
-  console.log('anlik_konumu_bul()');
+  clearMap();
+  adres = $('#adres').val();
+  sorgulama_modu = $('#sorgulama_modu').val();
+  if (sorgulama_modu==1){sorgulama_modu="otomatik";}
+  else if(sorgulama_modu==2){sorgulama_modu="adres";}
+  else{sorgulama_modu="otomatik";}
+  if (sorgulama_modu==="adres"){
+    console.log('SorgulamaModu: '+sorgulama_modu);
+    await addr();
+  }
+  else if(sorgulama_modu==="otomatik"){console.log('SorgulamaModu: '+sorgulama_modu);await loc();}
+}
+async function loc(){
   anlik_konum=nyaa_desu;
-  function basarili(kon){
+  async function basarili(kon){
     var k=kon.coords;
-    const konum={
-      'lat':parseFloat(k.latitude),
-      'lng':parseFloat(k.longitude)
-    }
+    const konum={'lat':parseFloat(k.latitude),'lng':parseFloat(k.longitude)}
     anlik_konum=konum;
     const a=JSON.parse(JSON.stringify(konum));
     a_lat=parseFloat(a.lat);
     a_lng=parseFloat(a.lng);
-    anlik_konum_obje= new google.maps.LatLng(a_lat,a_lng);//new google.maps.LatLng(a_lat,a_lng);
+    anlik_konum_obje= new google.maps.LatLng(a_lat,a_lng);
     console.log(anlik_konum);
+    konumuIsaretle();
+    return anlik_konum_obje;
   }
-  function hata(hat)
-  {
-    console.log('Konumlandırma hatasi: '+hat);
-  }
-  navigator.geolocation.getCurrentPosition(basarili,hata, konum_ayarlari);
-  }
-  else{anlik_konum=ibb_bina;}
+  navigator.geolocation.getCurrentPosition(basarili, konum_ayarlari);
+  return anlik_konum_obje;
 }
-anlik_konumu_bul();
+async function addr(){
+  anlik_konum=nyaa_desu;
+  anlik_konum_obje=nyaa_desu;
+  await clearMap();
+  await resetMap();
+  var geocoder = new google.maps.Geocoder();
+  await geocoder.geocode( { 'address': adres}, async function(sonuc, durum) {
+    async function x(){
+      var lat= parseFloat(sonuc[0].geometry.location.lat());
+      var lng= parseFloat(sonuc[0].geometry.location.lng());
+      console.log("lat: "+lat+"lng: "+lng);
+      anlik_konum_obje= new google.maps.LatLng(lat,lng);
+      anlik_konum={'lat':lat,' lng':lng}
+      console.log("AKO: "+anlik_konum_obje);
+      console.log("AK: "+anlik_konum);
+      await konumuIsaretle();
+      }
+    if (durum == google.maps.GeocoderStatus.OK){await x();}
+  });}
+async function waitloc(){
+  await anlik_konumu_bul();
+}
+async function getreallocation(){
+  await anlik_konumu_bul();
+  await konumuBul();
+}
 
+
+//AYNC FUNCTION ICINDE CAHIR.
 $.ajax({
   'async': true,
   'global': true,
-  'url': "https://nyarlko.com/veritabani.json",
+  'url': "https://www.nyarlko.com/veritabani.json",
   'dataType': "json",
   'success': function(data) {
     json = data;
@@ -65,33 +90,18 @@ $.ajax({
   }
 });
 //Mapi örnekle
-jQuery(document).ready(function(){
-  var ekAyarlar={
-    zoom:18,
-    center:anlik_konum_obje,//enboy,//anlik_konum,
-    mapTypeControl:true,
-    mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
-    navigationControl:true,
-    mapTypeId: google.maps.MapTypeId.ROAD_MAP // ROAD_MAP:Renksiz çizim // SATELLITE: Uydu görüntüsü
-  };
-  harita= new google.maps.Map(document.getElementById('map_arayuzu') ,ekAyarlar);
-  geocoder= new google.maps.Geocoder();
-  bilgipenceresi = new google.maps.InfoWindow();
-  google.maps.event.addListener(harita,'click',function(){
-    if(bilgipenceresi){
-      bilgipenceresi.setMap(nyaa_desu);
-      bilgipenceresi= nyaa_desu;
-    }
-  });
-  if (TestModu=true){alert(bilgilendirme_mesaji);}
+jQuery(document).ready(async function(){
+  await resetMap();
+  await anlik_konumu_bul();
 });
-async function konumuBul(){
-          await anlik_konumu_bul();
+async function konumuIsaretle(){
+          try{yeni_isaretli_hedef.setMap(nyaa_desu);}//Önce marker varsa Markeri sil
+          catch(e){console.log(e);}
           var yeni_isaretli_hedef=new google.maps.Marker({position:anlik_konum_obje,map:harita,icon:'kirmizi_ok_x32.png',title:'Konum'});
           if(bilgipenceresi){
             bilgipenceresi.setMap(nyaa_desu);
             bilgipenceresi=nyaa_desu;
-            clearMap();
+            clearMap();//Mapi temizle
           }
           google.maps.event.addListener(yeni_isaretli_hedef, 'click', function() {
             bilgipenceresi = new google.maps.InfoWindow({
@@ -101,18 +111,12 @@ async function konumuBul(){
             });
             bilgipenceresi.setPosition(anlik_konum_obje);
             bilgipenceresi.setContent('<div style="color:red">'+'Konumum'+'</div>'+'Mevcut Konumum.');
-            
             harita.setCenter(anlik_konum);
             haritada_isaretli_yerler.push(yeni_isaretli_hedef);
           });
-          //bilgipenceresi.open({anchor:Marker,harita,shouldFocus:true});//konum penceresini aç bir şekilde
-          console.log('KonumuBul()');
-          harita.panTo(await anlik_konum_obje);//Haritada konumu ortala
+          //bilgipenceresi.open(await harita,await yeni_isaretli_hedef);//konum penceresini aç bir şekilde
+          harita.panTo(anlik_konum_obje);       
 }
-async function konumual(){
-    await konumuBul();
-} 
-konumual();
 async function konumuAcKapa(){
   async function rotalariTemizle(){
     console.log('Rotalar temizleniyor...');
@@ -120,15 +124,15 @@ async function konumuAcKapa(){
     dds.length = 0;
   }
   alert('Rotalar hesaplanıyor.');
-  await konumuBul(); 
+  await anlik_konumu_bul();
   var neko;
-  test = $('#test_modu').val();
-  if(test===1){TestModu=true;}//Test modu açık mı kapalı mı olsun
-  else if(test===2){TestModu=false;}
-  else{TestModu=true;}
-  console.log('TestModu: '+TestModu);
+  adres = $('#adres').val();
   gidis_yontemi = $('#gidis_yontemi').val(); //Neyle gidicek bu insanlar yürüyerek mi arabayla mı bisikletle mi?
   let dakika = $('#dakika').val();
+  sorgulama_modu = $('#sorgulama_modu').val();
+  if (sorgulama_modu==1){sorgulama_modu="otomatik";}
+  else if(sorgulama_modu==2){sorgulama_modu="adres";}
+  else{sorgulama_modu="otomatik";}
   if (gidis_yontemi=='1'){gidis_yontemi='DRIVING';}// ARABA
   else if (gidis_yontemi=='2'){gidis_yontemi='WALKING';}//DEAD   //Tabanway                (Yürüyüş)
   else if (gidis_yontemi=='3'){gidis_yontemi='BICYCLING';}// Bisiklet
@@ -140,8 +144,8 @@ async function konumuAcKapa(){
       haritada_isaretli_yerler[neko]=nyaa_desu;
     }
   }
-  if(geocoder){//      'address':adres
-    geocoder.geocode({'location':anlik_konum},function(sonuc,durum){// 
+  if(geocoder){//      'location':anlik_konum
+    geocoder.geocode({'location':anlik_konum_obje},function(sonuc,durum){// 
       if(durum==google.maps.GeocoderStatus.OK){
         if(durum!=google.maps.GeocoderStatus.ZERO_RESULTS){
           console.log(sonuc);
@@ -164,14 +168,16 @@ async function konumuAcKapa(){
                           b= await JSON.parse(JSON.stringify(a));//Cevap Objesini stringe dönüştürelim
                           //console.log(a); //konum bilgilerini görmek istiyorsan uncomment yap
                           b= await b.routes[0].legs[0].duration.text;//Cevap objesinden sadece Seyahat zamanını alalım
-                          b= await b.split(" ");// Seyahat zamanı stringini (örnek: 1 dakika) 2 parçaya ayıralım
-                          seyahat_zamani_holder=await b[0];//Sadece sayı kısmını alalım. (Sayı olabilir ama hala string.)                          
+                          console.log(b);
+                          //b= await b.split(" ");// Seyahat zamanı stringini (örnek: 1 dakika) 2 parçaya ayıralım
+                          //seyahat_zamani_holder=await b[0];//Sadece sayı kısmını alalım. (Sayı olabilir ama hala string.)                          
+                          nekowait(200);//200ms bekleme süresi koyalım rota başına hesaplama için.
+                          seyahat_zamani_holder=await b;
                           let local_sure=parseInt(seyahat_zamani_holder);//seyahat zamani integer dönüştürüp local_sure değişkenine atayalım                     
                           if (local_sure<=dk ){//&& konumdan_hedefe_uzaklik<=dk*1000){//konumdan_hedefe_uzaklik<=alan_km*1000){// Sadece seçilen süreden az zamanda gidilebilecek yerler gösterilsin. (konumdan_hedefe_uzaklik<=alan_km*1000)
                                   const dd= new google.maps.DirectionsRenderer({suppressMarkers:true});//suppressMarkers İşaretleri kaldırıyor A B şeklindeki
                                   dd.setMap(harita);
                                   dd.setDirections(a);//Rotayı ekranda göster.
-                                  console.log('<----- Metod çalışma sayısı');
                                   var yeni_isaretli_hedef=new google.maps.Marker({
                                     position:hedef_enboy,
                                     map:harita,
@@ -183,7 +189,7 @@ async function konumuAcKapa(){
                                       bilgipenceresi=nyaa_desu;
                                     }
                                     bilgipenceresi = new google.maps.InfoWindow({
-                                      content: '<div style="color:red">'+konum.name +'</div>' + "Sizden " + konumdan_hedefe_uzaklik + " metre uzakta. "+'</br>'+'Seyahat zamani: '+seyahat_zamani_holder+' dakika.',
+                                      content: '<div style="color:red">'+konum.name +'</div>' + "Sizden " + konumdan_hedefe_uzaklik + " metre uzakta. "+'</br>'+'Seyahat zamani: '+seyahat_zamani_holder+'.',
                                       size: new google.maps.Size(150,50),
                                       pixelOffset: new google.maps.Size(0,-30),
                                       position:hedef_enboy,
@@ -210,16 +216,14 @@ async function nekoback(cevap,durum){///Gidiş zamanı hesaplama fonksyonu için
   var a= await cevap;
   //if (durum=='ZERO_RESULTS'){console.clear();alert('Seçtiğiniz seyahat yöntemi ile gidilebilecek rota bulunamadı.');}
   if (durum=='OK'){console.log(a);return a;}//obje
-  else{console.clear();console.log('Hata: Oneechan rotalar alınırken bir sorunla karşılaştım (?_?)');return;}
-  
+  else{console.clear();console.log('Hata: Rotaların birini hesaplarken bir sorunla karşılaştım. (?_?)');return;}
   }
-function nekowait(ms){
+function nekowait(ms){//Fonksiyonu askıya alma scripti.
     var d = new Date();
     var d2 = null;
     do { d2 = new Date(); }
     while(d2-d < ms);
 }
-
 async function clearMap(){
   console.log('Harita temizleniyor...');
   var dd= new google.maps.DirectionsRenderer({suppressMarkers:true});
@@ -232,4 +236,24 @@ async function clearMap(){
     dd.length = 0;
     dd = null;          
     }
+}
+async function resetMap(){
+
+  var ekAyarlar={
+    zoom:18,
+    center:anlik_konum_obje,//enboy,//anlik_konum,
+    mapTypeControl:true,
+    mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+    navigationControl:true,
+    mapTypeId: google.maps.MapTypeId.ROAD_MAP // ROAD_MAP:Renksiz çizim // SATELLITE: Uydu görüntüsü
+  };
+  harita= new google.maps.Map(document.getElementById('map_arayuzu') ,ekAyarlar);
+  geocoder= new google.maps.Geocoder();
+  bilgipenceresi = new google.maps.InfoWindow();
+  google.maps.event.addListener(harita,'click',function(){
+    if(bilgipenceresi){
+      bilgipenceresi.setMap(nyaa_desu);
+      bilgipenceresi= nyaa_desu;
+    }
+  });
 }
