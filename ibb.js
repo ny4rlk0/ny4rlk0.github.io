@@ -1,8 +1,8 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v24/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v21/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
-const tanimsiz;
+const tanimsiz=undefined;
 let harita,gidis_yontemi='DRIVING';
 var cember_alani,geocode,bilgipenceresi,anlik_konum,anlik_konum_obje=new google.maps.LatLng(41.013652686519606,28.955476284027043),a_lat,a_lng,akonum=[],adresObje,adresMarker=[];
 var haritada_isaretli_yerler=[],tum_konumlar=[];
