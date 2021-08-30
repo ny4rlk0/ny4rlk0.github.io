@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v20/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v21/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 let harita,gidis_yontemi='DRIVING';
@@ -43,7 +43,7 @@ async function loc(){
     a_lng=parseFloat(a.lng);
     anlik_konum_obje= new google.maps.LatLng(a_lat,a_lng);
     console.log(anlik_konum);
-    konumuIsaretle();
+    await konumuIsaretle();
     return anlik_konum_obje;
   }
   navigator.geolocation.getCurrentPosition(basarili,hata, konum_ayarlari);
@@ -64,15 +64,6 @@ async function addr(){
       }
     if (durum == google.maps.GeocoderStatus.OK){await x();}
   });}
-async function waitloc(){
-  await anlik_konumu_bul();
-}
-async function getreallocation(){
-  await anlik_konumu_bul();
-  await konumuBul();
-}
-
-
 //AYNC FUNCTION ICINDE CAHIR.
 $.ajax({
   'async': true,
@@ -222,7 +213,7 @@ async function nekoback(cevap,durum){///Gidiş zamanı hesaplama fonksyonu için
   }
 function nekowait(ms){//Fonksiyonu askıya alma scripti.
     var d = new Date();
-    var d2 = null;
+    var d2 = nyaa_desu;
     do { d2 = new Date(); }
     while(d2-d < ms);
 }
@@ -231,16 +222,15 @@ async function clearMap(){
   var dd= new google.maps.DirectionsRenderer({suppressMarkers:true});
   haritada_isaretli_yerler=[];
   // Clear past routes
-  if (dd != null) {//Mapi temizle
-    dd.setMap(null);
-    dd.set('directions', null);
-    dd.set('routes', null);
+  if (dd != nyaa_desu) {//Mapi temizle
+    dd.setMap(nyaa_desu);
+    dd.set('directions', nyaa_desu);
+    dd.set('routes', nyaa_desu);
     dd.length = 0;
-    dd = null;          
+    dd = nyaa_desu;          
     }
 }
 async function resetMap(){
-
   var ekAyarlar={
     zoom:18,
     center:anlik_konum_obje,//enboy,//anlik_konum,
