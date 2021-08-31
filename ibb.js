@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v53/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v54/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -161,6 +161,8 @@ async function konumuAcKapa(){
                           //console.log(a); //konum bilgilerini görmek istiyorsan uncomment yap
                           b= await b.routes[0].legs[0].duration.text;//Cevap objesinden sadece Seyahat zamanını alalım
                           if(b.includes("saat")&&b.includes("dakika")){
+                            yolcusaatvarmi=true;
+                            yolcudakikavarmi=true;
                             console.log(b);
                             b=b.replace("dakika","");
                             b=b.replace("saat","");
@@ -175,6 +177,8 @@ async function konumuAcKapa(){
                             console.log("d: "+yolcudakika);
                           }
                           else if(b.includes("saat")&&!b.includes("dakika")){
+                            yolcusaatvarmi=true;
+                            yolcudakikavarmi=false;
                             console.log(b);
                             b=b.replace("saat","");
                             console.log(b);
@@ -188,18 +192,32 @@ async function konumuAcKapa(){
                             console.log("d: "+yolcudakika);
                           }
                           else if(b.includes("dakika")&&!b.includes("saat")){
+                            yolcusaatvarmi=false;
+                            yolcudakikavarmi=true;
                             yolcusaat=0;
                             console.log(b);
                             b=b.replace("dakika","");
                             yolcudakika=parseInt(b);
                             console.log(b);
                           }
-                          if(yolcusaat!=0){seyahat_zamani_holder=(yolcusaat*60)+yolcudakika;}
-                          else if(yolcudakika!==0&&yolcusaat===0){seyahat_zamani_holder= yolcudakika;}
+                          if(yolcusaatvarmi===true&&yolcudakikavarmi===true){seyahat_zamani_holder=Math.floor((yolcusaat*60)+yolcudakika);}
+                          else if(yolcusaatvarmi===false&&yolcudakikavarmi===true){seyahat_zamani_holder= Math.floor(yolcudakika);}
+                          else if(yolcusaatvarmi===true&&yolcudakikavarmi===false){seyahat_zamani_holder= Math.floor(yolcusaat*60);}
+                          else{return;}
                           nekowait(200);//200ms bekleme süresi koyalım rota başına hesaplama için.
                           let local_sure=seyahat_zamani_holder;//seyahat zamani integer dönüştürüp local_sure değişkenine atayalım                     
                           if (local_sure<=dk ){//&& konumdan_hedefe_uzaklik<=dk*1000){//konumdan_hedefe_uzaklik<=alan_km*1000){// Sadece seçilen süreden az zamanda gidilebilecek yerler gösterilsin. (konumdan_hedefe_uzaklik<=alan_km*1000)
                                   const dd= new google.maps.DirectionsRenderer({suppressMarkers:true});//suppressMarkers İşaretleri kaldırıyor A B şeklindeki
+                                  let seyahat_zaman_stringi=null;
+                                  if (yolcudakikavarmi===true&&yolcusaatvarmi===true){
+                                    seyahat_zaman_stringi=yolcusaat+" saat "+yolcudakika+" dakika";
+                                  }
+                                  else if (yolcudakikavarmi===false&&yolcusaatvarmi===true){
+                                    seyahat_zaman_stringi=yolcusaat+" saat ";
+                                  }
+                                  else if (yolcudakikavarmi===true&&yolcusaatvarmi===false){
+                                    seyahat_zaman_stringi=yolcudakika+" dakika";
+                                  }
                                   dd.setMap(harita);
                                   dd.setDirections(a);//Rotayı ekranda göster.
                                   var yeni_isaretli_hedef=new google.maps.Marker({
@@ -213,7 +231,7 @@ async function konumuAcKapa(){
                                       bilgipenceresi=nyaa_desu;
                                     }
                                     bilgipenceresi = new google.maps.InfoWindow({
-                                      content: '<div style="color:red">'+konum.name +'</div>' + "Sizden " + konumdan_hedefe_uzaklik + " metre uzakta. "+'</br>'+'Seyahat zamani: '+seyahat_zamani_holder+'.',
+                                      content: '<div style="color:red">'+konum.name +'</div>' + "Sizden " + konumdan_hedefe_uzaklik + " metre uzakta. "+'</br>'+'Seyahat zamani: '+seyahat_zaman_stringi+'.',
                                       size: new google.maps.Size(150,50),
                                       pixelOffset: new google.maps.Size(0,-30),
                                       position:hedef_enboy,
