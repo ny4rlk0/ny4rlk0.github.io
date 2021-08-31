@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v54/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v55/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -138,7 +138,7 @@ async function konumuAcKapa(){
   if(geocoder){//      'location':anlik_konum
     console.log(anlik_konum);
     console.log(anlik_konum_obje);
-    geocoder.geocode({'location':anlik_konum},function(sonuc,durum){// 
+    geocoder.geocode({'location':anlik_konum_obje},function(sonuc,durum){// 
       if(durum==google.maps.GeocoderStatus.OK){
         if(durum!=google.maps.GeocoderStatus.ZERO_RESULTS){
           console.log(sonuc);
