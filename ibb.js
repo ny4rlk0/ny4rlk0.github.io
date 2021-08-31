@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v51/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v52/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -182,16 +182,13 @@ async function konumuAcKapa(){
                             yolcusaat=0;
                             console.log(b);
                             b=b.replace("dakika","");
-                            b=parseInt(b);
+                            yolcudakika=parseInt(b);
                             console.log(b);
                           }
-                          seyahat_zamani_holder=await b;
-                          //try{c=c.replace(" ","k");}
-                          //catch(e){console.log(" bulunamadı.");}
-                          console.log(parseArray);
+                          if(yolcusaat!=0){seyahat_zamani_holder=(yolcusaat*60)+yolcudakika;}
+                          else if(yolcudakika!==0&&yolcusaat===0){seyahat_zamani_holder= yolcudakika;}
                           nekowait(200);//200ms bekleme süresi koyalım rota başına hesaplama için.
-                          seyahat_zamani_holder=await c;
-                          let local_sure=parseInt(seyahat_zamani_holder);//seyahat zamani integer dönüştürüp local_sure değişkenine atayalım                     
+                          let local_sure=seyahat_zamani_holder;//seyahat zamani integer dönüştürüp local_sure değişkenine atayalım                     
                           if (local_sure<=dk ){//&& konumdan_hedefe_uzaklik<=dk*1000){//konumdan_hedefe_uzaklik<=alan_km*1000){// Sadece seçilen süreden az zamanda gidilebilecek yerler gösterilsin. (konumdan_hedefe_uzaklik<=alan_km*1000)
                                   const dd= new google.maps.DirectionsRenderer({suppressMarkers:true});//suppressMarkers İşaretleri kaldırıyor A B şeklindeki
                                   dd.setMap(harita);
