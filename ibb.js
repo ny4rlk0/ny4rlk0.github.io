@@ -7,10 +7,7 @@ let harita,gidis_yontemi='DRIVING';
 var cember_alani,geocode,bilgipenceresi,anlik_konum,anlik_konum_obje=new google.maps.LatLng(41.013652686519606,28.955476284027043),a_lat,a_lng,akonum=[],adresObje,adresMarker=[];
 var haritada_isaretli_yerler=[],tum_konumlar=[];
 var konum_ayarlari={enableHighAccuracy:true,timeout:5000,maximumAge:0};
-var sorgulama_modu=1;//Örnek konumlarla ve örnek veritabanıyla çalışır Gerçek veri tabanına geçeceğiniz zaman false yapın
-//False  oldugu zaman test modunu kapatır gerçek konumunuzu çeker ve veritabanındaki konumlarla karşılatırır.
-//Ben sadece ibb çevresindeki birkaç örneklem grubu ekledim google izin almadan içeriğinini çevrim dışı yapmak sözleşmelerine aykırı. //Aslında üşendim önceki bahane daha güzeldi. //ve bütün konumları çekseydim test bütçesinin üstüne çıkardım. Google free hesabıyla yaptım malum.
-//Veritabanına istanbuldaki bütün dükkan hastane kahveci vb. yerleri eklerseniz tam istediğiniz gibi çalışır.
+var sorgulama_modu=1;
 var ibb_bina={'lat':41.013556652651154, 'lng':28.95493828412249};
 const bilgilendirme_mesaji=`Bilgilendirme Mesajı:
 Sistem varsayılan ayarları yüzünden ve yeterince konum olmadığı için test modunda başlatıldı.
