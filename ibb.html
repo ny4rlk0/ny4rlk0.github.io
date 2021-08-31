@@ -14,29 +14,26 @@
 </head>
 <body style="margin:0px; padding:0px;">
   <center>
-  <b>Adres: </b>
+  <br><b>Adres: </b></br>
   <input id="adres" size="25" value="T.C. İstanbul Büyükşehir Belediyesi Başkanlığı" placeholder="Adres giriniz">
-  <br>Dakika: </br>
+  <br><b>Dakika: </b></br>
   <input type="number" id="dakika" min="1" max="10000" size="5" value="10" placeholder="Dakika, Sayı. (örnek:15)"/>  
-  </center>
-  <center>
-  <br>Gidiş Yöntemi: </br>
+  <br><b>Gidiş Yöntemi: </b></br>
   <select id="gidis_yontemi">
     <option value=1>Araba</option>
     <option value=2>Yaya</option>
     <option value=3>Bisiklet</option>
     <option value=4>Toplu Taşıma</option>
   </select>
-  <br>Sorgulama Modu: </br>
+  <br><b>Sorgulama Modu: </b></br>
   <select id="sorgulama_modu">
     <option value=1>Otomatik konum bulma</option>
     <option value=2>Adresi elle girme</option>
   </select>
-  </center>
-  <center>
   <div id="kon_bul"  style="width:250px; height:50px;">
   <button onClick="konumuAcKapa()">Gidilebilecek yerleri bul</button><!--/div-->
-  <button onClick="anlik_konumu_bul()">Konumu Göster</button></div></center>
+  <button onClick="anlik_konumu_bul()">Konumu Göster</button></div>
+  </center>
   <!--div id="map_arayuzu"  style="width:1250px; height:550px;"></div-->
   <div id="map_arayuzu"></div>
 <!-- 16 Ağustos 2021 - 30 Ağustos 2021 nyarlko tarafından ❤ ile kodlanmıştır! -->
