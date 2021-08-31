@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v52/PUBLIC_BETA'; //sürüm kodu / stabilite
+var nyaVersion='v53/PUBLIC_BETA'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -154,8 +154,7 @@ async function konumuAcKapa(){
                   (async function (konum){
                           let dk=parseInt(dakika);//dakikayı integer dönüştürüp dk değişkenine atayalım
                           var hedef_enboy = new google.maps.LatLng(parseFloat(konum.lat),parseFloat(konum.lng));
-                          let seyahat_zamani_holder,a,b,c,yolcusaat,yolcudakika;
-                          const parseArray=[];
+                          let seyahat_zamani_holder,a,b,c,yolcusaat,yolcudakika;yolcusaatvarmi=false;yolcudakikavarmi=false;
                           console.log('AdresEnBoy: '+adres_enboy);
                           console.log('AnlikKonum: '+anlik_konum);
                           var konumdan_hedefe_uzaklik= google.maps.geometry.spherical.computeDistanceBetween(adres_enboy,hedef_enboy);//Bulunduğun konum ile işaret arasındaki metre cinsinden mesafe
@@ -167,6 +166,19 @@ async function konumuAcKapa(){
                           if(b.includes("saat")&&b.includes("dakika")){
                             console.log(b);
                             b=b.replace("dakika","");
+                            b=b.replace("saat","");
+                            console.log(b);
+                            b=b.replace("  "," ");
+                            console.log(b);
+                            b=b.split(" ");
+                            console.log(b);
+                            yolcusaat=parseInt(b[0]);
+                            yolcudakika=parseInt(b[1]);
+                            console.log("s: "+yolcusaat);
+                            console.log("d: "+yolcudakika);
+                          }
+                          else if(b.includes("saat")&&!b.includes("dakika")){
+                            console.log(b);
                             b=b.replace("saat","");
                             console.log(b);
                             b=b.replace("  "," ");
