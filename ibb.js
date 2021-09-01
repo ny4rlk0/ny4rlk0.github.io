@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v62/PUBLIC_MAIN_RELEASE_STABLE'; //sürüm kodu / stabilite
+var nyaVersion='v64/PUBLIC_MAIN_RELEASE_STABLE'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -158,7 +158,7 @@ async function konumuAcKapa(){
                           konumdan_hedefe_uzaklik=Math.floor(konumdan_hedefe_uzaklik);
                           console.log(konumdan_hedefe_uzaklik);
                           if(konumdan_hedefe_uzaklik<=1000){konumdan_hedefe_uzaklik=konumdan_hedefe_uzaklik+" m"}
-                          else if(konumdan_hedefe_uzaklik>=1000){console.log("a");Math.floor((konumdan_hedefe_uzaklik/1000));konumdan_hedefe_uzaklik=konumdan_hedefe_uzaklik+" km"}
+                          else if(konumdan_hedefe_uzaklik>=1000){console.log("a");konumdan_hedefe_uzaklik= Math.floor((konumdan_hedefe_uzaklik/1000));konumdan_hedefe_uzaklik=konumdan_hedefe_uzaklik+" km"}
                           try{a= await gidisZamaniHesapla(adres_enboy,hedef_enboy);}//Cevap objemizi alalım
                           catch(e){console.clear;alert('Seçtiğiniz seyahat yöntemi ile gidilebilecek bir yada birden fazla yere rota bulunamadı.');return;} //LOL rota bulmazsa fonksiyonu durduruyor
                           b= await JSON.parse(JSON.stringify(a));//Cevap Objesini stringe dönüştürelim
