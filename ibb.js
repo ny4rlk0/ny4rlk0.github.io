@@ -151,7 +151,7 @@ async function konumuAcKapa(){
                   (async function (konum){
                           let dk=parseInt(dakika);//dakikayı integer dönüştürüp dk değişkenine atayalım
                           var hedef_enboy = new google.maps.LatLng(parseFloat(konum.lat),parseFloat(konum.lng));
-                          let seyahat_zamani_holder,a,b,c,yolcusaat,yolcudakika;yolcusaatvarmi=false;yolcudakikavarmi=false;
+                          let seyahat_zamani_holder,a,b,c,yolcusaat,yolcudakika;yolcusaatvarmi=false;yolcudakikavarmi=false;yolcugunvarmi=false;
                           console.log('AdresEnBoy: '+adres_enboy);
                           console.log('AnlikKonum: '+anlik_konum);
                           var konumdan_hedefe_uzaklik= google.maps.geometry.spherical.computeDistanceBetween(adres_enboy,hedef_enboy);//Bulunduğun konum ile işaret arasındaki metre cinsinden mesafe
@@ -160,9 +160,10 @@ async function konumuAcKapa(){
                           b= await JSON.parse(JSON.stringify(a));//Cevap Objesini stringe dönüştürelim
                           //console.log(a); //konum bilgilerini görmek istiyorsan uncomment yap
                           b= await b.routes[0].legs[0].duration.text;//Cevap objesinden sadece Seyahat zamanını alalım
-                          if(b.includes("saat")&&b.includes("dakika")){
+                          if(b.includes("saat")&&b.includes("dakika")&&!b.includes("gün")){
                             yolcusaatvarmi=true;
                             yolcudakikavarmi=true;
+                            yolcugunvarmi=false;
                             console.log(b);
                             b=b.replace("dakika","");
                             b=b.replace("saat","");
@@ -176,9 +177,10 @@ async function konumuAcKapa(){
                             console.log("s: "+yolcusaat);
                             console.log("d: "+yolcudakika);
                           }
-                          else if(b.includes("saat")&&!b.includes("dakika")){
+                          else if(b.includes("saat")&&!b.includes("dakika")&&!b.includes("gün")){
                             yolcusaatvarmi=true;
                             yolcudakikavarmi=false;
+                            yolcugunvarmi=false;
                             console.log(b);
                             b=b.replace("saat","");
                             console.log(b);
@@ -191,13 +193,25 @@ async function konumuAcKapa(){
                             console.log("s: "+yolcusaat);
                             console.log("d: "+yolcudakika);
                           }
-                          else if(b.includes("dakika")&&!b.includes("saat")){
+                          else if(b.includes("dakika")&&!b.includes("saat")&&!b.includes("gün")){
                             yolcusaatvarmi=false;
                             yolcudakikavarmi=true;
+                            yolcugunvarmi=false;
                             yolcusaat=0;
                             console.log(b);
                             b=b.replace("dakika","");
                             yolcudakika=parseInt(b);
+                            console.log(b);
+                          }
+                          else if(b.includes("saat")&&b.includes("gün")){
+                            yolcusaatvarmi=true;
+                            yolcugunvarmi=true;
+                            yolcudakikavarmi=false;
+                            console.log(b);
+                            b=b.replace("dakika","");
+                            b=b.replace("saat","");
+                            console.log(b);
+                            yolcusaat=parseInt(b);
                             console.log(b);
                           }
                           if(yolcusaatvarmi===true&&yolcudakikavarmi===true){seyahat_zamani_holder=Math.floor((yolcusaat*60)+yolcudakika);}
