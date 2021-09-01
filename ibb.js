@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v57/PUBLIC_MAIN_RELEASE_STABLE'; //sürüm kodu / stabilite
+var nyaVersion='v58/PUBLIC_MAIN_RELEASE_STABLE'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -215,7 +215,7 @@ async function konumuAcKapa(){
                             b=b.split(" ");
                             console.log(b);
                             yolcugun=parseInt(b[0]);
-                            yolcusaat=parseINT(b[1]);
+                            yolcusaat=parseInt(b[1]);
                             console.log(b);
                           }
                           if(yolcusaatvarmi===true&&yolcudakikavarmi===true){seyahat_zamani_holder=Math.floor((yolcusaat*60)+yolcudakika);}
