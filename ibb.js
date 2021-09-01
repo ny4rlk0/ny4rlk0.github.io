@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v59/PUBLIC_MAIN_RELEASE_STABLE'; //sürüm kodu / stabilite
+var nyaVersion='v60/PUBLIC_MAIN_RELEASE_STABLE'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -155,8 +155,10 @@ async function konumuAcKapa(){
                           console.log('AdresEnBoy: '+adres_enboy);
                           console.log('AnlikKonum: '+anlik_konum);
                           var konumdan_hedefe_uzaklik= google.maps.geometry.spherical.computeDistanceBetween(adres_enboy,hedef_enboy);//Bulunduğun konum ile işaret arasındaki metre cinsinden mesafe
-                          if(konumdan_hedefe_uzaklik>=1000.0){Math.floor((konumdan_hedefe_uzaklik/1000.0));konumdan_hedefe_uzaklik=konumdan_hedefe_uzaklik+" km"}
-                          else if(konumdan_hedefe_uzaklik<=1000.0){Math.floor(konumdan_hedefe_uzaklik);konumdan_hedefe_uzaklik=konumdan_hedefe_uzaklik+" m"}
+                          konumdan_hedefe_uzaklik=Math.floor(konumdan_hedefe_uzaklik);
+                          console.log(konumdan_hedefe_uzaklik);
+                          if(konumdan_hedefe_uzaklik>=1000){Math.floor((konumdan_hedefe_uzaklik/1000));konumdan_hedefe_uzaklik=konumdan_hedefe_uzaklik+" km"}
+                          else if(konumdan_hedefe_uzaklik<=1000){Math.floor(konumdan_hedefe_uzaklik);konumdan_hedefe_uzaklik=konumdan_hedefe_uzaklik+" m"}
                           try{a= await gidisZamaniHesapla(adres_enboy,hedef_enboy);}//Cevap objemizi alalım
                           catch(e){console.clear;alert('Seçtiğiniz seyahat yöntemi ile gidilebilecek bir yada birden fazla yere rota bulunamadı.');return;} //LOL rota bulmazsa fonksiyonu durduruyor
                           b= await JSON.parse(JSON.stringify(a));//Cevap Objesini stringe dönüştürelim
