@@ -208,7 +208,7 @@ async function konumuAcKapa(){
                             yolcugunvarmi=true;
                             yolcudakikavarmi=false;
                             console.log(b);
-                            b=b.replace("dakika","");
+                            b=b.replace("gün","");
                             b=b.replace("saat","");
                             console.log(b);
                             yolcusaat=parseInt(b);
