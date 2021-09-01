@@ -1,5 +1,5 @@
 //2021 © Her hakkı gizlidir ve Nyarlko'ya aittir.
-var nyaVersion='v56/PUBLIC_MAIN_RELEASE_STABLE'; //sürüm kodu / stabilite
+var nyaVersion='v57/PUBLIC_MAIN_RELEASE_STABLE'; //sürüm kodu / stabilite
 var ny4='rlk0';
 const nyaa_desu=null,dds=[];
 const tanimsiz=undefined;
@@ -221,7 +221,7 @@ async function konumuAcKapa(){
                           if(yolcusaatvarmi===true&&yolcudakikavarmi===true){seyahat_zamani_holder=Math.floor((yolcusaat*60)+yolcudakika);}
                           else if(yolcusaatvarmi===false&&yolcudakikavarmi===true){seyahat_zamani_holder= Math.floor(yolcudakika);}
                           else if(yolcusaatvarmi===true&&yolcudakikavarmi===false){seyahat_zamani_holder= Math.floor(yolcusaat*60);}
-                          else if(yolcusaatvarmi===true&&yolcugunvarmi===true&&yolcudakikavarmi===false){seyahat_zamani_holder= Math.floor((yolcusaat*60)+((yolcugun*24)*60)));}
+                          else if(yolcusaatvarmi===true&&yolcugunvarmi===true&&yolcudakikavarmi===false){seyahat_zamani_holder= Math.floor( (yolcusaat*60)+((yolcugun*24)*60)) ;}
                           else{return;}
                           nekowait(200);//200ms bekleme süresi koyalım rota başına hesaplama için.
                           let local_sure=seyahat_zamani_holder;//seyahat zamani integer dönüştürüp local_sure değişkenine atayalım                     
