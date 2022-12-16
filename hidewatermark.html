@@ -4,6 +4,19 @@
 <body>
 <pre>
 @echo off
+if _%1_==_payload_  goto :payload
+
+:getadmin
+    echo %~nx0: Waiting for Admin permission... ~ny4rlk0
+    set vbs=%temp%\getadmin.vbs
+    echo Set UAC = CreateObject^("Shell.Application"^)                >> "%vbs%"
+    echo UAC.ShellExecute "%~s0", "payload %~sdp0 %*", "", "runas", 1 >> "%vbs%"
+    "%temp%\getadmin.vbs"
+    del "%temp%\getadmin.vbs"
+goto :eof
+
+:payload
+@echo off
 taskkill /F /IM explorer.exe
 explorer.exe
 exit
